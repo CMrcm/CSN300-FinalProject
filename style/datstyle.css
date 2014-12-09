@@ -1,0 +1,111 @@
+/*blanket group changes*/
+h1 {
+	font-size: 35px;
+	background-color: gold;
+	text-align: center;
+	
+	width: 400px;
+	
+	margin: auto;
+	
+	border-style: solid;
+	border-width: 5px;
+	border-color: red;
+	
+}
+
+table {
+	font-size: 25px;
+	background-color: gold;
+	
+	width: 75%;
+	
+	margin: 50px 100px 50px 200px;
+	
+	border-style: solid;
+	border-width: 5px;
+	border-color: red;
+}
+
+.title {
+	font-size: 40px;
+	color: gold;
+	
+	background-color: black;
+	border-style: solid;
+	border-width: 2px;
+	border-color: gold;
+	
+	margin-top: 60px;
+	
+	float: left;
+}
+
+/* Trying to change the look of the "GO!" button
+but couldn't get it to work.
+form.input.button{
+	font-size: 50px;
+	color: red;
+	background-color: black;
+	
+	border-style: solid;
+	
+	margin: 25px 0px 10px 135px;
+	
+	width: 100px;
+	height: 50px;
+	
+}*/
+
+/* specific IDs */
+#next {
+	font-size: 35px;
+	background-color: gold;
+	text-align: right;
+	text-decoration: none;
+		
+	border-style: solid;
+	border-width: 5px;
+	border-color: red;
+
+	float: right;
+}
+
+#back {
+	font-size: 35px;
+	background-color: gold;
+	text-align: left;
+	text-decoration: none;
+
+	border-style: solid;
+	border-width: 5px;
+	border-color: red;
+
+	float: left;
+}
+
+#output {
+	width: 500px;
+	margin: auto;
+	
+	font-size: 35px;
+	background-color: gold;
+	text-align: center;
+
+	border-style: solid;
+	border-width: 5px;
+	border-color: red;
+}
+
+/*link behavior*/
+a:link{
+	text-decoration: none;
+	color: black;
+	font-size: 35px;
+	
+	text-align: right;
+}
+
+a:hover {
+    text-decoration: underline;
+}

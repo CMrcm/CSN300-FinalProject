@@ -1,0 +1,117 @@
+<!--This page calculates the experience points to be rewarded to a group after an encounter-->
+
+<html>
+	<head>
+		
+		<title>Experience Calculator</title>
+		
+		<!--stylesheet reference-->
+		<link rel="stylesheet" href="style/datstyle.css"/>
+		
+		<!--javascript function-->
+		<script type="text/javascript" src="TestScript.js"></script>
+		<script language="javascript" type="text/javascript">
+		function go () {
+			var lvl = document.getElementById('level').value;
+			var cr = document.getElementById('CR').value;
+			var ovrLvl = false;
+			var cdif;
+			var xp;
+			/*constants for equations*/
+			var EvC = 300;
+			var OvOdC = 200;
+			var UnOdC = 450;
+			
+			/*lvls 1-4 don't follow later patterns, corrections done here*/
+			/*quietly change levels < 3 to 3*/
+			if (lvl < 3) {
+				lvl = 3;
+			
+			/*lvl 4 requires adjustments of constants and special case*/
+			} else if (lvl == 4) {
+				UnOdC = 400;
+			} else { /*nothing*/ }
+			
+			/*calc cdif*/
+			cdif = cr - lvl;
+			
+			/*determine over/underlvl*/
+			if (cdif < 0) {
+				ovrLvl = true;
+			} else { /* nothing */ }
+			
+			/*nested if statements! everyone's favorite!*/
+			/*challenge rating too high/low*/
+			if (-7 > cdif || cdif > 7) {
+				xp = "Imbalanced challenge; Award no XP.";
+				document.getElementById("output").hidden = false;
+				document.getElementById("output").innerHTML = xp;
+				
+			} else {
+			
+				/*cdif even? lvl*2^(cdif/2)*300*/
+				if (cdif % 2 == 0) {
+					xp = Math.round(lvl*Math.pow(2,(cdif/2))*EvC);
+					document.getElementById("output").hidden = false;
+					document.getElementById("output").innerHTML = "Award: " + xp + "xp";
+					
+				/*cdif odd?*/
+				} else {
+				
+					/*overleveled party*/
+					if (ovrLvl == true) {
+						xp = lvl*Math.pow(2,((cdif+1)/2))*OvOdC;
+						document.getElementById("output").hidden = false;
+						document.getElementById("output").innerHTML = "Award: " + xp + "xp";
+						
+					/*underleveled party*/
+					} else {
+						xp = lvl*Math.pow(2,((cdif-1)/2))*UnOdC;
+						document.getElementById("output").hidden = false;
+						document.getElementById("output").innerHTML = "Award: " + xp + "xp";
+						
+					}/*end final case else*/
+					
+				}/*end even/odd else*/
+				
+			}/*end abs value else*/
+			
+			
+			
+			
+			
+		}/*end getXP*/
+		</script>
+	</head>
+	
+	<body>
+	
+		<!--jpg from http://www.runofplay.com/2010/07/12/there-and-back-again/-->
+		<!--inline css to create background-->
+		<style> 
+			html { 
+				background: url(img/DeadDragon.jpg) no-repeat center center fixed; 
+
+				-webkit-background-size: cover; 
+				-moz-background-size: cover; 
+				-o-background-size: cover; 
+				background-size: cover; 
+				} 
+		</style> 
+		
+		<p><h1>Enter your party's average level<br>
+		and the encounter's challenge rating.<br>
+		When you are finished, hit the GO! button.</p>
+		
+		<form id="in">
+			Party Level: <input type="number" id="level" min="1" max="20" value="1"><br>
+			Challenge Rating: <input type="number" id="CR" min="1" max="20" value="1"><br>
+			<button onClick="go(); return false;">GO!</button>
+		</form></h1>
+		
+		<p id="output" hidden>
+		
+		</p>
+		
+	</body>
+</html>
