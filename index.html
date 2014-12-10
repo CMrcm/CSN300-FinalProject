@@ -3,20 +3,77 @@
 <html>
 	<head>
 		
-		<title>Experience Calculator</title>
+		<title>Hoard Generator</title>
 		
 		<!--stylesheet reference-->
 		<link rel="stylesheet" href="style/datstyle.css"/>
 		
 		<!--javascript function-->
-		<script type="text/javascript" src="TestScript.js"></script>
 		<script language="javascript" type="text/javascript">
+		 
+		//DICE!
+		function D4(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.ceil(Math.random()*100)/25));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D6(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.ceil(Math.random()*100)/16));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D8(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.ceil(Math.random()*100)/12));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D10(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.random()*10));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D12(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.ceil(Math.random()*100)/8));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D100(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation +(Math.ceil(Math.random()*100));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		//function attached to button
 		function go () {
 			var lvl = document.getElementById('level').value;
 			var cr = document.getElementById('CR').value;
 			var ovrLvl = false;
 			var cdif;
 			var xp;
+			var roll;
 			/*constants for equations*/
 			var EvC = 300;
 			var OvOdC = 200;
@@ -43,17 +100,17 @@
 			/*nested if statements! everyone's favorite!*/
 			/*challenge rating too high/low*/
 			if (-7 > cdif || cdif > 7) {
-				xp = "Imbalanced challenge; Award no XP.";
-				document.getElementById("output").hidden = false;
-				document.getElementById("output").innerHTML = xp;
+				xp = "Imbalanced challenge; Award no XP.\n";
+				document.getElementById("output1").hidden = false;
+				document.getElementById("output1").innerHTML = xp;
 				
 			} else {
 			
 				/*cdif even? lvl*2^(cdif/2)*300*/
 				if (cdif % 2 == 0) {
 					xp = Math.round(lvl*Math.pow(2,(cdif/2))*EvC);
-					document.getElementById("output").hidden = false;
-					document.getElementById("output").innerHTML = "Award: " + xp + "xp";
+					document.getElementById("output1").hidden = false;
+					document.getElementById("output1").innerHTML = "Award: " + xp + "xp\n";
 					
 				/*cdif odd?*/
 				} else {
@@ -61,14 +118,14 @@
 					/*overleveled party*/
 					if (ovrLvl == true) {
 						xp = lvl*Math.pow(2,((cdif+1)/2))*OvOdC;
-						document.getElementById("output").hidden = false;
-						document.getElementById("output").innerHTML = "Award: " + xp + "xp";
+						document.getElementById("output1").hidden = false;
+						document.getElementById("output1").innerHTML = "Award: " + xp + "xp\n";
 						
 					/*underleveled party*/
 					} else {
 						xp = lvl*Math.pow(2,((cdif-1)/2))*UnOdC;
-						document.getElementById("output").hidden = false;
-						document.getElementById("output").innerHTML = "Award: " + xp + "xp";
+						document.getElementById("output1").hidden = false;
+						document.getElementById("output1").innerHTML = "Award: " + xp + "xp\n";
 						
 					}/*end final case else*/
 					
@@ -76,28 +133,28 @@
 				
 			}/*end abs value else*/
 			
+			/*treasure...here we go.  There is no pattern to it according to the rules.  It simply*
+			  must be coded 1for1.*/
+			  
+			document.getElementById("output2").hidden = false;
+			roll = 14;
+			switch(cr) {
+				
+				case 1:
+				
+					
+					if (roll<15) {
+						document.getElementById("output2").innerHTML = "No coins";
+					} //end coins
+					break;
 			
+			}//end level switch
 			
-			
-			
-		}/*end getXP*/
+		}/*end go*/
 		</script>
 	</head>
 	
 	<body>
-	
-		<!--jpg from http://www.runofplay.com/2010/07/12/there-and-back-again/-->
-		<!--inline css to create background-->
-		<style> 
-			html { 
-				background: url(img/DeadDragon.jpg) no-repeat center center fixed; 
-
-				-webkit-background-size: cover; 
-				-moz-background-size: cover; 
-				-o-background-size: cover; 
-				background-size: cover; 
-				} 
-		</style> 
 		
 		<p><h1>Enter your party's average level<br>
 		and the encounter's challenge rating.<br>
@@ -109,9 +166,12 @@
 			<button onClick="go(); return false;">GO!</button>
 		</form></h1>
 		
-		<p id="output" hidden>
+		<p id="output1" hidden></p>
+		<p id="output2"></p>
+		<p id="output3"></p>
+		<p id="output4"></p>
 		
-		</p>
+		
 		
 	</body>
 </html>
