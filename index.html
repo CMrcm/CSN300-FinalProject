@@ -10,7 +10,7 @@
 		
 		<!--javascript function-->
 		<script language="javascript" type="text/javascript">
-		 
+		
 		//DICE!
 		function D4(x) {
 			var accumulation = 0;
@@ -65,6 +65,57 @@
 			}
 			return accumulation;
 		}
+		
+		//Gem generator returns <parameter># of randomly generated gems and their values
+		function Gem(x) {
+			
+			var gems = ["moss agate","azurite","blue quartz","hematite","lapis lazuli","malachite","obsidian","rhodochrosite",
+						"tiger eye turquoise","pearl","bloodstone","carnelian","chalcedony","chrysoprase","citrine","iolite",
+						"jasper","moonstone","onyx","peridot","clear quartz","sardonyx","rose quartz","zircon","amber","amethyst",
+						"chrysoberyl","coral","garnet","jade","jet","golden pearl","red spinel","tourmaline","alexandrite",
+						"aquamarine","black pearl","topaz","emerald","opal","sapphire","corundum","ruby","diamond","jacinth",
+						"green spinel","smoky quartz","star sapphire","deep blue spinel","red-brown garnet"];
+
+			var y;
+			var cost = "";
+			var gemList = "";
+			
+			while (x!=0) {
+				
+				y = D100(1);
+				
+				if (y<26) {
+				
+					cost = D4(4) + " gp";
+				
+				} else if (25<y && y<51) {
+				
+					cost = D4(2)*10 + " gp";
+					
+				} else if (50<y && y<71) {
+				
+					cost = D4(4)*10 + " gp";
+					
+				} else if (70<y && y<91) {
+				
+					cost = D4(2)*100 + " gp";
+					
+				} else if (90<y && y<100) {
+				
+					cost = D4(2)*1000 + " gp";
+					
+				} else {
+				
+					cost = D4(4) + " gp";
+				}
+				
+				gemList += gems[Math.floor(Math.ceil(Math.random()*100)/2)] + " (" + cost + ") <br />";
+				x--;
+			}//end while
+			
+			document.getElementById("output3").innerHTML = gemList;
+			
+		}//end GemArt
 		
 		//function attached to button
 		function go () {
@@ -134,22 +185,314 @@
 			}/*end abs value else*/
 			
 			/*treasure...here we go.  There is no pattern to it according to the rules.  It simply*
-			  must be coded 1for1.*/
+			  must be coded 1for1.  So many ifs...so many...  Tried to use a switch function but I banged*
+			  my head against for a day before just deciding to go with the devil I knew.*/
 			  
-			document.getElementById("output2").hidden = false;
-			roll = 14;
-			switch(cr) {
+			if (cr==1) {
 				
-				case 1:
+				//coins
+				roll = D100(1);
+				if (roll<15) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (14<roll && roll<30) {
+					document.getElementById("output2").innerHTML = D6(1)*1000 + " copper.";
+				} else if (29<roll && roll<53) {
+					document.getElementById("output2").innerHTML = D8(1)*100 + " silver.";
+				} else if (52<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D8(2)*10 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(1)*10 + " platinum.";
+				}//end coins
 				
-					
-					if (roll<15) {
-						document.getElementById("output2").innerHTML = "No coins";
-					} //end coins
-					break;
+				Gem(4);
+				
+			}//end lvl 1
 			
-			}//end level switch
+			else if (cr==2) {
+
+				roll = D100(1);
+				if (roll<14) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (13<roll && roll<24) {
+					document.getElementById("output2").innerHTML = D10(1)*1000 + " copper.";
+				} else if (23<roll && roll<44) {
+					document.getElementById("output2").innerHTML = D10(2)*100 + " silver.";
+				} else if (43<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D10(4)*10 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D8(2)*10 + " platinum.";
+				}//end coins
 			
+			}//end lvl 2
+			
+			else if (cr==3) {
+				
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (11<roll && roll<22) {
+					document.getElementById("output2").innerHTML = D10(2)*1000 + " copper.";
+				} else if (21<roll && roll<42) {
+					document.getElementById("output2").innerHTML = D8(4)*100 + " silver.";
+				} else if (41<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D10(4)*10 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(1)*10 + " platinum.";
+				}//end coins
+				
+			}//end lvl 3
+			
+			else if (cr==4) {
+
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (11<roll && roll<22) {
+					document.getElementById("output2").innerHTML = D10(3)*1000 + " copper.";
+				} else if (21<roll && roll<42) {
+					document.getElementById("output2").innerHTML = D12(4)*1000 + " silver.";
+				} else if (41<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D6(1)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D8(1)*10 + " platinum.";
+				}//end coins
+				
+			}//end lvl 4
+			
+			else if (cr==5) {
+
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<20) {
+					document.getElementById("output2").innerHTML = D4(1)*10000 + " copper.";
+				} else if (19<roll && roll<39) {
+					document.getElementById("output2").innerHTML = D6(1)*1000 + " silver.";
+				} else if (38<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D8(1)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(1)*10 + " platinum.";
+				}//end coins
+				
+			}//end lvl 5
+			
+			else if (cr==6) {
+
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<19) {
+					document.getElementById("output2").innerHTML = D6(1)*10000 + " copper.";
+				} else if (18<roll && roll<38) {
+					document.getElementById("output2").innerHTML = D8(1)*1000 + " silver.";
+				} else if (37<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D10(1)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D12(1)*10 + " platinum.";
+				}//end coins
+			
+			}//end lvl 6
+			
+			else if (cr==7) {
+			
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (11<roll && roll<19) {
+					document.getElementById("output2").innerHTML = D10(1)*10000 + " copper.";
+				} else if (18<roll && roll<36) {
+					document.getElementById("output2").innerHTML = D12(1)*1000 + " silver.";
+				} else if (35<roll && roll<94) {
+					document.getElementById("output2").innerHTML = D6(2)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(3)*10 + " platinum.";
+				}//end coins
+
+			}//end lvl 7
+			
+			else if (cr==8) {
+
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<16) {
+					document.getElementById("output2").innerHTML = D12(1)*10000 + " copper.";
+				} else if (15<roll && roll<30) {
+					document.getElementById("output2").innerHTML = D6(2)*1000 + " silver.";
+				} else if (29<roll && roll<88) {
+					document.getElementById("output2").innerHTML = D8(2)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D6(3)*10 + " platinum.";
+				}//end coins
+			
+			}//end lvl 8
+			
+			else if (cr==9) {
+
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<16) {
+					document.getElementById("output2").innerHTML = D6(2)*10000 + " copper.";
+				} else if (15<roll && roll<30) {
+					document.getElementById("output2").innerHTML = D8(2)*1000 + " silver.";
+				} else if (29<roll && roll<86) {
+					document.getElementById("output2").innerHTML = D4(5)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D12(2)*10 + " platinum.";
+				}//end coins
+			
+			}//end lvl 9
+			
+			else if (cr==10) {
+			
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<25) {
+					document.getElementById("output2").innerHTML = D10(2)*1000 + " silver.";
+				} else if (24<roll && roll<80) {
+					document.getElementById("output2").innerHTML = D4(6)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D6(5)*10 + " platinum.";
+				}//end coins
+				
+			}//end lvl 10
+			
+			else if (cr==11) {
+			
+				roll = D100(1);
+				if (roll<9) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (8<roll && roll<15) {
+					document.getElementById("output2").innerHTML = D10(3)*1000 + " silver.";
+				} else if (14<roll && roll<76) {
+					document.getElementById("output2").innerHTML = D8(4)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(4)*10 + " platinum.";
+				}//end coins
+
+			}//end lvl 11
+			
+			else if (cr==12) {
+			
+				roll = D100(1);
+				if (roll<9) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (8<roll && roll<15) {
+					document.getElementById("output2").innerHTML = D12(3)*1000 + " silver.";
+				} else if (14<roll && roll<76) {
+					document.getElementById("output2").innerHTML = D4(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(1)*100 + " platinum.";
+				}//end coins
+			
+			}//end lvl 12
+			
+			else if (cr==13) {
+			
+				roll = D100(1);
+				if (roll<9) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (8<roll && roll<76) {
+					document.getElementById("output2").innerHTML = D4(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(1)*100 + " platinum.";
+				}//end coins
+
+			}//end lvl 13
+			
+			else if (cr==14) {
+			
+				roll = D100(1);
+				if (roll<9) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (8<roll && roll<76) {
+					document.getElementById("output2").innerHTML = D6(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D12(1)*100 + " platinum.";
+				}//end coins
+
+			}//end lvl 14
+			
+			else if (cr==15) {
+			
+				roll = D100(1);
+				if (roll<4) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (3<roll && roll<75) {
+					document.getElementById("output2").innerHTML = D8(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(3)*100 + " platinum.";
+				}//end coins
+
+			}//end lvl 15
+			
+			else if (cr==16) {
+			
+				roll = D100(1);
+				if (roll<4) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (3<roll && roll<75) {
+					document.getElementById("output2").innerHTML = D12(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(3)*100 + " platinum.";
+				}//end coins
+
+			}//end lvl 16
+			
+			else if (cr==17) {
+			
+				roll = D100(1);
+				if (roll<4) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (3<roll && roll<69) {
+					document.getElementById("output2").innerHTML = D4(3)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(2)*100 + " platinum.";
+				}//end coins
+
+			}//end lvl 17
+			
+			else if (cr==18) {
+			
+				roll = D100(1);
+				if (roll<3) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (2<roll && roll<66) {
+					document.getElementById("output2").innerHTML = D6(3)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(5)*100 + " platinum.";
+				}//end coins
+
+			}//end lvl 18
+			
+			else if (cr==19) {
+			
+				roll = D100(1);
+				if (roll<3) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (2<roll && roll<66) {
+					document.getElementById("output2").innerHTML = D8(3)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(3)*100 + " platinum.";
+				}//end coins
+
+			}//end lvl 19
+			
+			else {
+			
+				roll = D100(1);
+				if (roll<3) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (2<roll && roll<66) {
+					document.getElementById("output2").innerHTML = D8(4)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(4)*100 + " platinum.";
+				}//end coins
+
+			}//end lvl 20
+
 		}/*end go*/
 		</script>
 	</head>
