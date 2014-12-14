@@ -117,6 +117,85 @@
 			
 		}//end GemArt
 		
+		//generates art objects the same as Gem()
+		function Art(x) {
+		
+			var art =	["silver ewer","carved statuette","finely wrought bracelet","vestments","gemmed comb","silver sword",
+						"velvet gemmed mask","silver chalice","large wool tapestry","mug with jade inlay","silver gemmed sword",
+						"carved harp","solid gold idol","gold comb","gold gemmed comb","gemmed bottle stopper","ceremonial dagger",
+						"gemmed eyepatch","pendant","old painting","silk mantle","sapphire pendant","bejeweled glove","music box",
+						"jeweled anklet","gold gemmed circlet","string of pearls","jeweled crown","jeweled ring","gold chalice",
+						"silver chalice","medallion","gemmed earings","jeweled scepter","fine carpet","fine violin","gold inlaid lute",
+						"gemmed holy symbol","spool of fine thread","silk tapestry","candellabra","fine lockbox","gemmed slippers",
+						"bejeweled hand mirror","masterpiece painting","gold shortsword","fine dress","carved bone statuette",
+						"finely carved smoking pipe","ceremonial chestplate"];
+			
+			var y;
+			var cost = "";
+			var artList = "";
+			
+			while (x!=0) {
+			
+			y = D100(1);
+				
+				if (y<11) {
+				
+					cost = D10(1)*10 + " gp";
+				
+				} else if (10<y && y<26) {
+				
+					cost = D6(3)*10 + " gp";
+					
+				} else if (25<y && y<41) {
+				
+					cost = D6(1)*100 + " gp";
+					
+				} else if (40<y && y<51) {
+				
+					cost = D10(1)*100 + " gp";
+					
+				} else if (50<y && y<61) {
+				
+					cost = D6(2)*100 + " gp";
+					
+				} else if (60<y && y<71) {
+				
+					cost = D6(2)*100 + " gp";
+					
+				} else if (70<y && y<81) {
+				
+					cost = D6(3)*100 + " gp";
+					
+				} else if (80<y && y<86) {
+				
+					cost = D6(5)*100 + " gp";
+					
+				} else if (85<y && y<91) {
+				
+					cost = D4(1)*1000 + " gp";
+					
+				} else if (90<y && y<96) {
+				
+					cost = D6(1)*1000 + " gp";
+					
+				} else if (95<y && y<100) {
+				
+					cost = D4(2)*1000 + " gp";
+					
+				} else {
+				
+					cost = D6(2)*1000 + " gp";
+				}
+				
+				artList += art[Math.floor(Math.ceil(Math.random()*100)/2)] + " (" + cost + ") <br />";
+				x--;
+			
+			}//end while
+		
+			document.getElementById("output3").innerHTML = artList;
+		
+		}//end Art
+		
 		//function attached to button
 		function go () {
 			var lvl = document.getElementById('level').value;
@@ -204,7 +283,15 @@
 					document.getElementById("output2").innerHTML = D4(1)*10 + " platinum.";
 				}//end coins
 				
-				Gem(4);
+				//art
+				roll = D100(1);
+				if (roll<91) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (90<roll && roll<96) {
+					Gem(1);
+				} else {
+					Art(1);
+				}//end art
 				
 			}//end lvl 1
 			
@@ -222,6 +309,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D8(2)*10 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<82) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (81<roll && roll<96) {
+					Gem(Math.ceil(D6(1)/2));
+				} else {
+					Art(Math.ceil(D6(1)/2));
+				}//end art
 			
 			}//end lvl 2
 			
@@ -240,6 +337,16 @@
 					document.getElementById("output2").innerHTML = D10(1)*10 + " platinum.";
 				}//end coins
 				
+				//art
+				roll = D100(1);
+				if (roll<78) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (77<roll && roll<96) {
+					Gem(Math.ceil(D6(1)/2));
+				} else {
+					Art(Math.ceil(D6(1)/2));
+				}//end art
+				
 			}//end lvl 3
 			
 			else if (cr==4) {
@@ -256,6 +363,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D8(1)*10 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<71) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (70<roll && roll<96) {
+					Gem(D4(1));
+				} else {
+					Art(Math.ceil(D6(1)/2));
+				}//end art
 				
 			}//end lvl 4
 			
@@ -274,6 +391,16 @@
 					document.getElementById("output2").innerHTML = D10(1)*10 + " platinum.";
 				}//end coins
 				
+				//art
+				roll = D100(1);
+				if (roll<61) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (60<roll && roll<96) {
+					Gem(D4(1));
+				} else {
+					Art(D4(1));
+				}//end art
+				
 			}//end lvl 5
 			
 			else if (cr==6) {
@@ -290,6 +417,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D12(1)*10 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<57) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (56<roll && roll<93) {
+					Gem(D4(1));
+				} else {
+					Art(D4(1));
+				}//end art
 			
 			}//end lvl 6
 			
@@ -307,6 +444,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D4(3)*10 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<49) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (48<roll && roll<89) {
+					Gem(D4(1));
+				} else {
+					Art(D4(1));
+				}//end art
 
 			}//end lvl 7
 			
@@ -324,6 +471,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D6(3)*10 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<46) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (45<roll && roll<86) {
+					Gem(D6(1));
+				} else {
+					Art(D4(1));
+				}//end art
 			
 			}//end lvl 8
 			
@@ -341,6 +498,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D12(2)*10 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<41) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (40<roll && roll<81) {
+					Gem(D8(1));
+				} else {
+					Art(D4(1));
+				}//end art
 			
 			}//end lvl 9
 			
@@ -357,6 +524,16 @@
 					document.getElementById("output2").innerHTML = D6(5)*10 + " platinum.";
 				}//end coins
 				
+				//art
+				roll = D100(1);
+				if (roll<36) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (35<roll && roll<80) {
+					Gem(D8(1));
+				} else {
+					Art(D6(1));
+				}//end art
+				
 			}//end lvl 10
 			
 			else if (cr==11) {
@@ -371,6 +548,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D10(4)*10 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<25) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (24<roll && roll<75) {
+					Gem(D10(1));
+				} else {
+					Art(D6(1));
+				}//end art
 
 			}//end lvl 11
 			
@@ -386,6 +573,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D4(1)*100 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<18) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (17<roll && roll<71) {
+					Gem(D10(1));
+				} else {
+					Art(D8(1));
+				}//end art
 			
 			}//end lvl 12
 			
@@ -399,6 +596,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D10(1)*100 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (11<roll && roll<67) {
+					Gem(D12(1));
+				} else {
+					Art(D10(1));
+				}//end art
 
 			}//end lvl 13
 			
@@ -412,6 +619,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D12(1)*100 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (11<roll && roll<67) {
+					Gem(D12(1));
+				} else {
+					Art(D10(1));
+				}//end art
 
 			}//end lvl 14
 			
@@ -425,6 +642,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D4(3)*100 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<10) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (9<roll && roll<66) {
+					Gem(D10(2));
+				} else {
+					Art(D8(2));
+				}//end art
 
 			}//end lvl 15
 			
@@ -438,6 +665,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D4(3)*100 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<8) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (7<roll && roll<65) {
+					Gem(D6(4));
+				} else {
+					Art(D10(2));
+				}//end art
 
 			}//end lvl 16
 			
@@ -451,6 +688,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D10(2)*100 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<5) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (4<roll && roll<64) {
+					Gem(D8(4));
+				} else {
+					Art(D8(3));
+				}//end art
 
 			}//end lvl 17
 			
@@ -464,6 +711,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D4(5)*100 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<5) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (4<roll && roll<55) {
+					Gem(D12(3));
+				} else {
+					Art(D10(3));
+				}//end art
 
 			}//end lvl 18
 			
@@ -477,6 +734,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D10(3)*100 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<4) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (3<roll && roll<51) {
+					Gem(D6(6));
+				} else {
+					Art(D6(6));
+				}//end art
 
 			}//end lvl 19
 			
@@ -490,6 +757,16 @@
 				} else {
 					document.getElementById("output2").innerHTML = D10(4)*100 + " platinum.";
 				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<3) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (2<roll && roll<39) {
+					Gem(D10(4));
+				} else {
+					Art(D6(7));
+				}//end art
 
 			}//end lvl 20
 
