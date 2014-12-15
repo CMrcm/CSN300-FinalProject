@@ -196,6 +196,315 @@
 		
 		}//end Art
 		
+		//items generator takes two parameters one for the number of items and the second as a code to link to 
+		//mundane, minor, medium or major; output is printed to output4
+		
+		function Item(type,number) {
+			
+			var roll;
+			var itemList = "";
+			
+			//mundane
+			if (type==0) {
+				
+				while (number!=0) {
+				
+					roll = D100(1);
+					if (roll<18) {
+				
+						roll = D100(1);
+						if (roll<13) {
+							itemList += D4(1) + " flask(s) of alchemist's fire <br />";
+						} else if (12<roll && roll<25) {
+							itemList += D4(2) + " flask(s) of acid <br />";
+						} else if (24<roll && roll<37) {
+							itemList += D4(1) + " smokestick(s) <br />";
+						} else if (36<roll && roll<49) {
+							itemList += D4(1) + " flask(s) of holy water <br />";
+						} else if (48<roll && roll<63) {
+							itemList += D4(1) + " dose(s) of antitoxin <br />";
+						} else if (62<roll && roll<75) {
+							itemList += "everburning torch <br />";
+						} else if (74<roll && roll<89) {
+							itemList += D4(1) + " tanglefoot bag(s) <br />";
+						} else {
+							itemList += D4(1) + " thunderstone(s) <br />";
+						}
+						
+					} else if (17<roll && roll<51) {
+						
+						roll = D100(1);
+						if (roll<13) {
+							itemList += "chain shirt <br />";
+						} else if (12<roll && roll<19) {
+							itemList += " masterwork studded leather <br />";
+						} else if (18<roll && roll<27) {
+							itemList += "breastplate <br />";
+						} else if (26<roll && roll<35) {
+							itemList += "banded mail <br />";
+						} else if (34<roll && roll<55) {
+							itemList += "half-plate <br />";
+						} else if (54<roll && roll<81) {
+							itemList += "full plate <br />";
+						} else if (80<roll && roll<91) {
+							roll = Math.ceil(D4(1)/2);
+							if (roll==1) {
+								itemList += "darkwood buckler <br />";
+							} else {
+								itemList += "darkwood shield <br />";
+							}
+						} else {
+							
+							roll = D100(1);
+							if (roll<18) {
+								itemList += "masterwork buckler <br />";
+							} else if (17<roll && roll<41) {
+								itemList += "masterwork light wooden shield <br />";
+							} else if (40<roll && roll<61) {
+								itemList += "masterwork light steel shield <br />";
+							} else if (60<roll && roll<84) {
+								itemList += "masterwork heavy wooden shield <br />";
+							} else {
+								itemList += "masterwork heavy steel shield <br />";
+							}
+						}
+						
+					} else if (50<roll && roll<84) {
+						
+						roll = D100(1);
+						if (roll<51) {
+							
+							roll = D100(1);
+							if (roll<5) {
+								itemList += "masterwork dagger <br />";
+							} else if (4<roll && roll<15) {
+								itemList += "masterwork greataxe <br />";
+							} else if (14<roll && roll<25) {
+								itemList += "masterwork greatsword <br />";
+							} else if (24<roll && roll<29) {
+								itemList += "masterwork kama <br />";
+							} else if (28<roll && roll<42) {
+								itemList += "masterwork longsword <br />";
+							} else if (41<roll && roll<46) {
+								itemList += "masterwork light mace <br />";
+							} else if (45<roll && roll<51) {
+								itemList += "masterwork heavy mace <br />";
+							} else if (50<roll && roll<55) {
+								itemList += "masterwork nunchaku <br />";
+							} else if (54<roll && roll<58) {
+								itemList += "masterwork quarterstaff <br />";
+							} else if (57<roll && roll<62) {
+								itemList += "masterwork rapier <br />";
+							} else if (61<roll && roll<67) {
+								itemList += "masterwork scimitar <br />";
+							} else if (66<roll && roll<71) {
+								itemList += "masterwork shortspear <br />";
+							} else if (70<roll && roll<75) {
+								itemList += "masterwork siangham <br />";
+							} else if (74<roll && roll<85) {
+								itemList += "masterwork bastard sword <br />";
+							} else if (84<roll && roll<90) {
+								itemList += "masterwork shortsword <br />";
+							} else {
+								itemList += "masterwork Dwarven waraxe <br />";
+							}
+						
+						} else if (50<roll && roll<71) {
+							
+							if (roll<3) {
+								itemList += "masterwork Orc double axe <br />";
+							} else if (3<roll && roll<8) {
+								itemList += "masterwork battleaxe <br />";
+							} else if (7<roll && roll<11) {
+								itemList += "masterwork spiked chain <br />";
+							} else if (10<roll && roll<13) {
+								itemList += "masterwork club <br />";
+							} else if (12<roll && roll<17) {
+								itemList += "masterwork hand crossbow <br />";
+							} else if (16<roll && roll<20) {
+								itemList += "masterwork repeating crossbow <br />";
+							} else if (19<roll && roll<22) {
+								itemList += "masterwork punching dagger <br />";
+							} else if (21<roll && roll<24) {
+								itemList += "masterwork falchion <br />";
+							} else if (23<roll && roll<27) {
+								itemList += "masterwork dire flail <br />";
+							} else if (26<roll && roll<32) {
+								itemList += "masterwork heavy flail <br />";
+							} else if (31<roll && roll<36) {
+								itemList += "masterwork light flail <br />";
+							} else if (35<roll && roll<38) {
+								itemList += "masterwork gauntlet <br />";
+							} else if (37<roll && roll<40) {
+								itemList += "masterwork spiked gauntlet <br />";
+							} else if (39<roll && roll<42) {
+								itemList += "masterwork glaive <br />";
+							} else if (41<roll && roll<44) {
+								itemList += "masterwork greatclub <br />";
+							} else if (43<roll && roll<46) {
+								itemList += "masterwork guisarme <br />";
+							} else if (45<roll && roll<49) {
+								itemList += "masterwork halberd <br />";
+							} else if (48<roll && roll<52) {
+								itemList += "masterwork halfspear <br />";
+							} else if (51<roll && roll<55) {
+								itemList += "masterwork Gnome hooked hammer <br />";
+							} else if (54<roll && roll<57) {
+								itemList += "masterwork light hammer <br />";
+							} else if (56<roll && roll<59) {
+								itemList += "masterwork handaxe <br />";
+							} else if (58<roll && roll<62) {
+								itemList += "masterwork kukri <br />";
+							} else if (61<roll && roll<65) {
+								itemList += "masterwork longspear <br />";
+							} else if (64<roll && roll<68) {
+								itemList += "masterwork morningstar <br />";
+							} else if (67<roll && roll<71) {
+								itemList += "masterwork net <br />";
+							} else if (70<roll && roll<73) {
+								itemList += "masterwork heavy pick <br />";
+							} else if (72<roll && roll<75) {
+								itemList += "masterwork light pick <br />";
+							} else if (74<roll && roll<77) {
+								itemList += "masterwork ranseur <br />";
+							} else if (76<roll && roll<79) {
+								itemList += "masterwork sap <br />";
+							} else if (78<roll && roll<81) {
+								itemList += "masterwork scythe <br />";
+							} else if (80<roll && roll<83) {
+								itemList += "masterwork shuriken <br />";
+							} else if (82<roll && roll<85) {
+								itemList += "masterwork sickle <br />";
+							} else if (84<roll && roll<87) {
+								itemList += "masterwork two-bladed sword <br />";
+							} else if (86<roll && roll<90) {
+								itemList += "masterwork trident <br />";
+							} else if (89<roll && roll<92) {
+								itemList += "masterwork Dwarven urgrosh <br />";
+							} else if (91<roll && roll<95) {
+								itemList += "masterwork warhammer <br />";
+							} else if (94<roll && roll<98) {
+								itemList += "masterwork whip <br />";
+							} else {
+								itemList += "masterwork lance <br />";
+							}
+							
+						} else {
+						
+							roll = D100(1);
+							if (roll<11) {
+								roll = Math.ceil(D6(1)/2);
+								if (roll==1) {
+									itemList += "50 masterwork arrows <br />";
+								} else if (roll==2) {
+									itemList += "50 masterwork crossbow bolts <br />";
+								} else {
+									itemList += "50 masterwork sling bullets <br />";
+								}
+							} else if (10<roll && roll<16) {
+								itemList += "masterwork throwing axe <br />";
+							} else if (15<roll && roll<26) {
+								itemList += "masterwork heavy crossbow <br />";
+							} else if (25<roll && roll<36) {
+								itemList += "masterwork light crossbow <br />";
+							} else if (35<roll && roll<40) {
+								itemList += "masterwork dart <br />";
+							} else if (39<roll && roll<42) {
+								itemList += "masterwork javelin <br />";
+							} else if (41<roll && roll<47) {
+								itemList += "masterwork shortbow <br />";
+							} else if (46<roll && roll<52) {
+								itemList += "masterwork composite shortbow <br />";
+							} else if (51<roll && roll<57) {
+								itemList += "masterwork composite shortbow (+1 STR) <br />";
+							} else if (56<roll && roll<62) {
+								itemList += "masterwork composite shortbow (+2 STR) <br />";
+							} else if (61<roll && roll<66) {
+								itemList += "masterwork sling <br />";
+							} else if (65<roll && roll<76) {
+								itemList += "masterwork longbow <br />";
+							} else if (75<roll && roll<81) {
+								itemList += "masterwork composite longbow <br />";
+							} else if (80<roll && roll<86) {
+								itemList += "masterwork composite longbow (+1 STR) <br />";
+							} else if (85<roll && roll<91) {
+								itemList += "masterwork composite longbow (+2 STR) <br />";
+							} else if (90<roll && roll<96) {
+								itemList += "masterwork composite longbow (+3 STR) <br />";
+							} else {
+								itemList += "masterwork composite longbow (+4 STR) <br />";
+							}
+						}
+						
+					} else {
+						
+						roll = D100(1);
+						if (roll<4) {
+							itemList += "backpack <br />";
+						} else if (3<roll && roll<7) {
+							itemList += "crowbar <br />";
+						} else if (6<roll && roll<12) {
+							itemList += "bullsey lantern <br />";
+						} else if (11<roll && roll<17) {
+							itemList += "simple lock <br />";
+						} else if (16<roll && roll<22) {
+							itemList += "average lock <br />";
+						} else if (21<roll && roll<29) {
+							itemList += "good lock <br />";
+						} else if (28<roll && roll<36) {
+							itemList += "superior lock <br />";
+						} else if (35<roll && roll<41) {
+							itemList += "masterwork manacles <br />";
+						} else if (40<roll && roll<44) {
+							itemList += "small steel mirror <br />";
+						} else if (43<roll && roll<47) {
+							itemList += "silk rope (50ft) <br />";
+						} else if (46<roll && roll<54) {
+							itemList += "spyglass <br />";
+						} else if (53<roll && roll<59) {
+							itemList += "masterwork artisan's tools <br />";
+						} else if (58<roll && roll<64) {
+							itemList += "climber's kit <br />";
+						} else if (63<roll && roll<69) {
+							itemList += "disguise kit <br />";
+						} else if (38<roll && roll<74) {
+							itemList += "healer's kit <br />";
+						} else if (73<roll && roll<78) {
+							itemList += "silver holy symbol <br />";
+						} else if (77<roll && roll<82) {
+							itemList += "hourglass <br />";
+						} else if (81<roll && roll<89) {
+							itemList += "magnifying glass <br />";
+						} else if (88<roll && roll<96) {
+							itemList += "masterwork instrument <br />";
+						} else {
+							itemList += "masterwork thieve's tools <br />";
+						}
+					}
+					
+					number--;
+					
+				}//end while
+				
+				document.getElementById("output4").innerHTML = itemList;
+				
+			//minor
+			} else if (type==1) {
+		
+			//medium
+			} else if (type==2) {
+		
+			//major
+			} else {
+		
+			}
+		
+		}//end Item
+		
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////// MAIN FUNCTION MAIN FUNCTION MAIN FUNCTION MAIN FUNCTION MAIN FUNCTION MAIN FUNCTION ///////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		//function attached to button
 		function go () {
 			var lvl = document.getElementById('level').value;
@@ -293,6 +602,16 @@
 					Art(1);
 				}//end art
 				
+				//items
+				roll = D100(1);
+				if (roll<72) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (71<roll && roll<96) {
+					Item(0,1);
+				} else {
+					Item(1,1);
+				}//end items
+
 			}//end lvl 1
 			
 			else if (cr==2) {
@@ -319,6 +638,16 @@
 				} else {
 					Art(Math.ceil(D6(1)/2));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<50) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (49<roll && roll<86) {
+					Item(0,1);
+				} else {
+					Item(1,1);
+				}//end items
 			
 			}//end lvl 2
 			
@@ -347,6 +676,16 @@
 					Art(Math.ceil(D6(1)/2));
 				}//end art
 				
+				//items
+				roll = D100(1);
+				if (roll<50) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (49<roll && roll<80) {
+					Item(0,Math.ceil(D6(1)/2));
+				} else {
+					Item(1,1);
+				}//end items
+				
 			}//end lvl 3
 			
 			else if (cr==4) {
@@ -373,6 +712,16 @@
 				} else {
 					Art(Math.ceil(D6(1)/2));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<43) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (42<roll && roll<63) {
+					Item(0,D4(1));
+				} else {
+					Item(1,1);
+				}//end items
 				
 			}//end lvl 4
 			
@@ -401,6 +750,16 @@
 					Art(D4(1));
 				}//end art
 				
+				//items
+				roll = D100(1);
+				if (roll<58) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (57<roll && roll<68) {
+					Item(0,D4(1));
+				} else {
+					Item(1,Math.ceil(D6(2)/2));
+				}//end items
+				
 			}//end lvl 5
 			
 			else if (cr==6) {
@@ -427,6 +786,18 @@
 				} else {
 					Art(D4(1));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<55) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (54<roll && roll<60) {
+					Item(0,D4(1));
+				} else if (59<roll && roll<100) {
+					Item(1,Math.ceil(D6(2)/2));
+				} else {
+					Item(2,1);
+				}//end items
 			
 			}//end lvl 6
 			
@@ -454,6 +825,16 @@
 				} else {
 					Art(D4(1));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<52) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (51<roll && roll<98) {
+					Item(1,Math.ceil(D6(2)/2));
+				} else {
+					Item(2,1);
+				}//end items
 
 			}//end lvl 7
 			
@@ -481,6 +862,16 @@
 				} else {
 					Art(D4(1));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<52) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (51<roll && roll<98) {
+					Item(1,D4(1));
+				} else {
+					Item(2,1);
+				}//end items
 			
 			}//end lvl 8
 			
@@ -508,6 +899,16 @@
 				} else {
 					Art(D4(1));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<44) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (43<roll && roll<92) {
+					Item(1,D4(1));
+				} else {
+					Item(2,1);
+				}//end items
 			
 			}//end lvl 9
 			
@@ -534,6 +935,18 @@
 					Art(D6(1));
 				}//end art
 				
+				//items
+				roll = D100(1);
+				if (roll<41) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (40<roll && roll<89) {
+					Item(1,D4(1));
+				} else if (88<roll && roll<100) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
+				
 			}//end lvl 10
 			
 			else if (cr==11) {
@@ -558,6 +971,18 @@
 				} else {
 					Art(D6(1));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<32) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (31<roll && roll<85) {
+					Item(1,D4(1));
+				} else if (84<roll && roll<99) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
 
 			}//end lvl 11
 			
@@ -583,6 +1008,18 @@
 				} else {
 					Art(D8(1));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<28) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (27<roll && roll<83) {
+					Item(1,D6(1));
+				} else if (82<roll && roll<98) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
 			
 			}//end lvl 12
 			
@@ -606,6 +1043,18 @@
 				} else {
 					Art(D10(1));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<20) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (19<roll && roll<74) {
+					Item(1,D6(1));
+				} else if (73<roll && roll<96) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
 
 			}//end lvl 13
 			
@@ -629,6 +1078,18 @@
 				} else {
 					Art(D10(1));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<20) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (19<roll && roll<59) {
+					Item(1,D6(1));
+				} else if (58<roll && roll<93) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
 
 			}//end lvl 14
 			
@@ -652,6 +1113,18 @@
 				} else {
 					Art(D8(2));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (11<roll && roll<47) {
+					Item(1,D10(1));
+				} else if (46<roll && roll<91) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
 
 			}//end lvl 15
 			
@@ -675,6 +1148,18 @@
 				} else {
 					Art(D10(2));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<41) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (40<roll && roll<47) {
+					Item(1,D10(1));
+				} else if (46<roll && roll<91) {
+					Item(2,Math.ceil(D6(1)/2));
+				} else {
+					Item(3,1);
+				}//end items
 
 			}//end lvl 16
 			
@@ -698,6 +1183,16 @@
 				} else {
 					Art(D8(3));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<34) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (33<roll && roll<84) {
+					Item(2,Math.ceil(D6(1)/2));
+				} else {
+					Item(3,1);
+				}//end items
 
 			}//end lvl 17
 			
@@ -721,6 +1216,16 @@
 				} else {
 					Art(D10(3));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<25) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (24<roll && roll<81) {
+					Item(2,D4(1));
+				} else {
+					Item(3,1);
+				}//end items
 
 			}//end lvl 18
 			
@@ -744,6 +1249,16 @@
 				} else {
 					Art(D6(6));
 				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<5) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (4<roll && roll<71) {
+					Item(2,D4(1));
+				} else {
+					Item(3,1);
+				}//end items
 
 			}//end lvl 19
 			
@@ -767,7 +1282,17 @@
 				} else {
 					Art(D6(7));
 				}//end art
-
+				
+				//items
+				roll = D100(1);
+				if (roll<26) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (25<roll && roll<66) {
+					Item(2,D4(1));
+				} else {
+					Item(3,Math.ceil(D6(1)/2));
+				}//end items
+				
 			}//end lvl 20
 
 		}/*end go*/
