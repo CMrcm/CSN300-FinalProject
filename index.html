@@ -490,12 +490,44 @@
 				
 			//minor
 			} else if (type==1) {
-		
+				
+				variable = number;
+				while (number!=0) {
+				
+					itemList = variable + " minor item(s)";
+					number--;
+				
+				}//end while
+
+				document.getElementById("output4").innerHTML = itemList;
+				
 			//medium
 			} else if (type==2) {
+				
+				variable = number;
+				while (number!=0) {
+				
+					itemList = variable + " medium items(s)";
+					number--;
+				
+				}//end while
+
+				document.getElementById("output4").innerHTML = itemList;
+				
 		
 			//major
 			} else {
+				
+				variable = number;
+				while (number!=0) {
+				
+					itemList = variable + " major item(s)";
+					number--;
+				
+				}//end while
+
+				document.getElementById("output4").innerHTML = itemList;
+				
 		
 			}
 		
@@ -517,6 +549,11 @@
 			var EvC = 300;
 			var OvOdC = 200;
 			var UnOdC = 450;
+			
+			document.getElementById("output1").hidden = false;
+			document.getElementById("output2").hidden = false;
+			document.getElementById("output3").hidden = false;
+			document.getElementById("output4").hidden = false;
 			
 			/*lvls 1-4 don't follow later patterns, corrections done here*/
 			/*quietly change levels < 3 to 3*/
@@ -540,7 +577,6 @@
 			/*challenge rating too high/low*/
 			if (-7 > cdif || cdif > 7) {
 				xp = "Imbalanced challenge; Award no XP.\n";
-				document.getElementById("output1").hidden = false;
 				document.getElementById("output1").innerHTML = xp;
 				
 			} else {
@@ -548,7 +584,6 @@
 				/*cdif even? lvl*2^(cdif/2)*300*/
 				if (cdif % 2 == 0) {
 					xp = Math.round(lvl*Math.pow(2,(cdif/2))*EvC);
-					document.getElementById("output1").hidden = false;
 					document.getElementById("output1").innerHTML = "Award: " + xp + "xp\n";
 					
 				/*cdif odd?*/
@@ -557,13 +592,11 @@
 					/*overleveled party*/
 					if (ovrLvl == true) {
 						xp = lvl*Math.pow(2,((cdif+1)/2))*OvOdC;
-						document.getElementById("output1").hidden = false;
 						document.getElementById("output1").innerHTML = "Award: " + xp + "xp\n";
 						
 					/*underleveled party*/
 					} else {
 						xp = lvl*Math.pow(2,((cdif-1)/2))*UnOdC;
-						document.getElementById("output1").hidden = false;
 						document.getElementById("output1").innerHTML = "Award: " + xp + "xp\n";
 						
 					}/*end final case else*/
@@ -1312,9 +1345,9 @@
 		</form></h1>
 		
 		<p id="output1" hidden></p>
-		<p id="output2"></p>
-		<p id="output3"></p>
-		<p id="output4"></p>
+		<p id="output2" hidden></p>
+		<p id="output3" hidden></p>
+		<p id="output4" hidden></p>
 		
 		
 		
