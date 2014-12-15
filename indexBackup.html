@@ -1,0 +1,1530 @@
+<!--This page calculates the experience points to be rewarded to a group after an encounter-->
+
+<html>
+	<head>
+		
+		<title>Hoard Generator</title>
+		
+		<!--stylesheet reference-->
+		<link rel="stylesheet" href="style/datstyle.css"/>
+		
+		<!--javascript function-->
+		<script language="javascript" type="text/javascript">
+		
+		//DICE!
+		function D4(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.ceil(Math.random()*100)/25));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D6(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.ceil(Math.random()*100)/16));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D8(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.ceil(Math.random()*100)/12));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D10(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.random()*10));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D12(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation + (Math.ceil(Math.ceil(Math.random()*100)/8));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		function D100(x) {
+			var accumulation = 0;
+			while (x!=0){
+				accumulation = accumulation +(Math.ceil(Math.random()*100));
+				x--;
+			}
+			return accumulation;
+		}
+		
+		//Gem generator returns <parameter># of randomly generated gems and their values
+		function Gem(x) {
+			
+			var gems = ["moss agate","azurite","blue quartz","hematite","lapis lazuli","malachite","obsidian","rhodochrosite",
+						"tiger eye turquoise","pearl","bloodstone","carnelian","chalcedony","chrysoprase","citrine","iolite",
+						"jasper","moonstone","onyx","peridot","clear quartz","sardonyx","rose quartz","zircon","amber","amethyst",
+						"chrysoberyl","coral","garnet","jade","jet","golden pearl","red spinel","tourmaline","alexandrite",
+						"aquamarine","black pearl","topaz","emerald","opal","sapphire","corundum","ruby","diamond","jacinth",
+						"green spinel","smoky quartz","star sapphire","deep blue spinel","red-brown garnet"];
+
+			var y;
+			var cost = "";
+			var gemList = "";
+			
+			while (x!=0) {
+				
+				y = D100(1);
+				
+				if (y<26) {
+				
+					cost = D4(4) + " gp";
+				
+				} else if (25<y && y<51) {
+				
+					cost = D4(2)*10 + " gp";
+					
+				} else if (50<y && y<71) {
+				
+					cost = D4(4)*10 + " gp";
+					
+				} else if (70<y && y<91) {
+				
+					cost = D4(2)*100 + " gp";
+					
+				} else if (90<y && y<100) {
+				
+					cost = D4(2)*1000 + " gp";
+					
+				} else {
+				
+					cost = D4(4) + " gp";
+				}
+				
+				gemList += gems[Math.floor(Math.random()*50)] + " (" + cost + ") <br />";
+				x--;
+			}//end while
+			
+			document.getElementById("output3").innerHTML = gemList;
+			
+		}//end GemArt
+		
+		//generates art objects the same as Gem()
+		function Art(x) {
+		
+			var art =	["silver ewer","carved statuette","finely wrought bracelet","vestments","gemmed comb","silver sword",
+						"velvet gemmed mask","silver chalice","large wool tapestry","mug with jade inlay","silver gemmed sword",
+						"carved harp","solid gold idol","gold comb","gold gemmed comb","gemmed bottle stopper","ceremonial dagger",
+						"gemmed eyepatch","pendant","old painting","silk mantle","sapphire pendant","bejeweled glove","music box",
+						"jeweled anklet","gold gemmed circlet","string of pearls","jeweled crown","jeweled ring","gold chalice",
+						"silver chalice","medallion","gemmed earings","jeweled scepter","fine carpet","fine violin","gold inlaid lute",
+						"gemmed holy symbol","spool of fine thread","silk tapestry","candellabra","fine lockbox","gemmed slippers",
+						"bejeweled hand mirror","masterpiece painting","gold shortsword","fine dress","carved bone statuette",
+						"finely carved smoking pipe","ceremonial chestplate"];
+			
+			var y;
+			var cost = "";
+			var artList = "";
+			
+			while (x!=0) {
+			
+			y = D100(1);
+				
+				if (y<11) {
+				
+					cost = D10(1)*10 + " gp";
+				
+				} else if (10<y && y<26) {
+				
+					cost = D6(3)*10 + " gp";
+					
+				} else if (25<y && y<41) {
+				
+					cost = D6(1)*100 + " gp";
+					
+				} else if (40<y && y<51) {
+				
+					cost = D10(1)*100 + " gp";
+					
+				} else if (50<y && y<61) {
+				
+					cost = D6(2)*100 + " gp";
+					
+				} else if (60<y && y<71) {
+				
+					cost = D6(2)*100 + " gp";
+					
+				} else if (70<y && y<81) {
+				
+					cost = D6(3)*100 + " gp";
+					
+				} else if (80<y && y<86) {
+				
+					cost = D6(5)*100 + " gp";
+					
+				} else if (85<y && y<91) {
+				
+					cost = D4(1)*1000 + " gp";
+					
+				} else if (90<y && y<96) {
+				
+					cost = D6(1)*1000 + " gp";
+					
+				} else if (95<y && y<100) {
+				
+					cost = D4(2)*1000 + " gp";
+					
+				} else {
+				
+					cost = D6(2)*1000 + " gp";
+				}
+				
+				artList += art[Math.floor(Math.random()*50)] + " (" + cost + ") <br />";
+				x--;
+			
+			}//end while
+		
+			document.getElementById("output3").innerHTML = artList;
+		
+		}//end Art
+		
+		//items generator takes two parameters one for the number of items and the second as a code to link to 
+		//mundane, minor, medium or major; output is printed to output4
+		
+		function Item(type,number) {
+			
+			var roll;
+			var itemList = "";
+			var sentinel = true;
+			
+			//mundane
+			if (type==0) {
+				
+				while (number!=0) {
+				
+					roll = D100(1);
+					if (roll<18) {
+				
+						roll = D100(1);
+						if (roll<13) {
+							itemList += D4(1) + " flask(s) of alchemist's fire <br />";
+						} else if (12<roll && roll<25) {
+							itemList += D4(2) + " flask(s) of acid <br />";
+						} else if (24<roll && roll<37) {
+							itemList += D4(1) + " smokestick(s) <br />";
+						} else if (36<roll && roll<49) {
+							itemList += D4(1) + " flask(s) of holy water <br />";
+						} else if (48<roll && roll<63) {
+							itemList += D4(1) + " dose(s) of antitoxin <br />";
+						} else if (62<roll && roll<75) {
+							itemList += "everburning torch <br />";
+						} else if (74<roll && roll<89) {
+							itemList += D4(1) + " tanglefoot bag(s) <br />";
+						} else {
+							itemList += D4(1) + " thunderstone(s) <br />";
+						}
+						
+					} else if (17<roll && roll<51) {
+						
+						roll = D100(1);
+						if (roll<13) {
+							itemList += "chain shirt <br />";
+						} else if (12<roll && roll<19) {
+							itemList += " masterwork studded leather <br />";
+						} else if (18<roll && roll<27) {
+							itemList += "breastplate <br />";
+						} else if (26<roll && roll<35) {
+							itemList += "banded mail <br />";
+						} else if (34<roll && roll<55) {
+							itemList += "half-plate <br />";
+						} else if (54<roll && roll<81) {
+							itemList += "full plate <br />";
+						} else if (80<roll && roll<91) {
+							roll = Math.ceil(D4(1)/2);
+							if (roll==1) {
+								itemList += "darkwood buckler <br />";
+							} else {
+								itemList += "darkwood shield <br />";
+							}
+						} else {
+							
+							roll = D100(1);
+							if (roll<18) {
+								itemList += "masterwork buckler <br />";
+							} else if (17<roll && roll<41) {
+								itemList += "masterwork light wooden shield <br />";
+							} else if (40<roll && roll<61) {
+								itemList += "masterwork light steel shield <br />";
+							} else if (60<roll && roll<84) {
+								itemList += "masterwork heavy wooden shield <br />";
+							} else {
+								itemList += "masterwork heavy steel shield <br />";
+							}
+						}
+						
+					} else if (50<roll && roll<84) {
+						
+						roll = D100(1);
+						if (roll<51) {
+							
+							roll = D100(1);
+							if (roll<5) {
+								itemList += "masterwork dagger <br />";
+							} else if (4<roll && roll<15) {
+								itemList += "masterwork greataxe <br />";
+							} else if (14<roll && roll<25) {
+								itemList += "masterwork greatsword <br />";
+							} else if (24<roll && roll<29) {
+								itemList += "masterwork kama <br />";
+							} else if (28<roll && roll<42) {
+								itemList += "masterwork longsword <br />";
+							} else if (41<roll && roll<46) {
+								itemList += "masterwork light mace <br />";
+							} else if (45<roll && roll<51) {
+								itemList += "masterwork heavy mace <br />";
+							} else if (50<roll && roll<55) {
+								itemList += "masterwork nunchaku <br />";
+							} else if (54<roll && roll<58) {
+								itemList += "masterwork quarterstaff <br />";
+							} else if (57<roll && roll<62) {
+								itemList += "masterwork rapier <br />";
+							} else if (61<roll && roll<67) {
+								itemList += "masterwork scimitar <br />";
+							} else if (66<roll && roll<71) {
+								itemList += "masterwork shortspear <br />";
+							} else if (70<roll && roll<75) {
+								itemList += "masterwork siangham <br />";
+							} else if (74<roll && roll<85) {
+								itemList += "masterwork bastard sword <br />";
+							} else if (84<roll && roll<90) {
+								itemList += "masterwork shortsword <br />";
+							} else {
+								itemList += "masterwork Dwarven waraxe <br />";
+							}
+						
+						} else if (50<roll && roll<71) {
+							
+							if (roll<3) {
+								itemList += "masterwork Orc double axe <br />";
+							} else if (3<roll && roll<8) {
+								itemList += "masterwork battleaxe <br />";
+							} else if (7<roll && roll<11) {
+								itemList += "masterwork spiked chain <br />";
+							} else if (10<roll && roll<13) {
+								itemList += "masterwork club <br />";
+							} else if (12<roll && roll<17) {
+								itemList += "masterwork hand crossbow <br />";
+							} else if (16<roll && roll<20) {
+								itemList += "masterwork repeating crossbow <br />";
+							} else if (19<roll && roll<22) {
+								itemList += "masterwork punching dagger <br />";
+							} else if (21<roll && roll<24) {
+								itemList += "masterwork falchion <br />";
+							} else if (23<roll && roll<27) {
+								itemList += "masterwork dire flail <br />";
+							} else if (26<roll && roll<32) {
+								itemList += "masterwork heavy flail <br />";
+							} else if (31<roll && roll<36) {
+								itemList += "masterwork light flail <br />";
+							} else if (35<roll && roll<38) {
+								itemList += "masterwork gauntlet <br />";
+							} else if (37<roll && roll<40) {
+								itemList += "masterwork spiked gauntlet <br />";
+							} else if (39<roll && roll<42) {
+								itemList += "masterwork glaive <br />";
+							} else if (41<roll && roll<44) {
+								itemList += "masterwork greatclub <br />";
+							} else if (43<roll && roll<46) {
+								itemList += "masterwork guisarme <br />";
+							} else if (45<roll && roll<49) {
+								itemList += "masterwork halberd <br />";
+							} else if (48<roll && roll<52) {
+								itemList += "masterwork halfspear <br />";
+							} else if (51<roll && roll<55) {
+								itemList += "masterwork Gnome hooked hammer <br />";
+							} else if (54<roll && roll<57) {
+								itemList += "masterwork light hammer <br />";
+							} else if (56<roll && roll<59) {
+								itemList += "masterwork handaxe <br />";
+							} else if (58<roll && roll<62) {
+								itemList += "masterwork kukri <br />";
+							} else if (61<roll && roll<65) {
+								itemList += "masterwork longspear <br />";
+							} else if (64<roll && roll<68) {
+								itemList += "masterwork morningstar <br />";
+							} else if (67<roll && roll<71) {
+								itemList += "masterwork net <br />";
+							} else if (70<roll && roll<73) {
+								itemList += "masterwork heavy pick <br />";
+							} else if (72<roll && roll<75) {
+								itemList += "masterwork light pick <br />";
+							} else if (74<roll && roll<77) {
+								itemList += "masterwork ranseur <br />";
+							} else if (76<roll && roll<79) {
+								itemList += "masterwork sap <br />";
+							} else if (78<roll && roll<81) {
+								itemList += "masterwork scythe <br />";
+							} else if (80<roll && roll<83) {
+								itemList += "masterwork shuriken <br />";
+							} else if (82<roll && roll<85) {
+								itemList += "masterwork sickle <br />";
+							} else if (84<roll && roll<87) {
+								itemList += "masterwork two-bladed sword <br />";
+							} else if (86<roll && roll<90) {
+								itemList += "masterwork trident <br />";
+							} else if (89<roll && roll<92) {
+								itemList += "masterwork Dwarven urgrosh <br />";
+							} else if (91<roll && roll<95) {
+								itemList += "masterwork warhammer <br />";
+							} else if (94<roll && roll<98) {
+								itemList += "masterwork whip <br />";
+							} else {
+								itemList += "masterwork lance <br />";
+							}
+							
+						} else {
+						
+							roll = D100(1);
+							if (roll<11) {
+								roll = Math.ceil(D6(1)/2);
+								if (roll==1) {
+									itemList += "50 masterwork arrows <br />";
+								} else if (roll==2) {
+									itemList += "50 masterwork crossbow bolts <br />";
+								} else {
+									itemList += "50 masterwork sling bullets <br />";
+								}
+							} else if (10<roll && roll<16) {
+								itemList += "masterwork throwing axe <br />";
+							} else if (15<roll && roll<26) {
+								itemList += "masterwork heavy crossbow <br />";
+							} else if (25<roll && roll<36) {
+								itemList += "masterwork light crossbow <br />";
+							} else if (35<roll && roll<40) {
+								itemList += "masterwork dart <br />";
+							} else if (39<roll && roll<42) {
+								itemList += "masterwork javelin <br />";
+							} else if (41<roll && roll<47) {
+								itemList += "masterwork shortbow <br />";
+							} else if (46<roll && roll<52) {
+								itemList += "masterwork composite shortbow <br />";
+							} else if (51<roll && roll<57) {
+								itemList += "masterwork composite shortbow (+1 STR) <br />";
+							} else if (56<roll && roll<62) {
+								itemList += "masterwork composite shortbow (+2 STR) <br />";
+							} else if (61<roll && roll<66) {
+								itemList += "masterwork sling <br />";
+							} else if (65<roll && roll<76) {
+								itemList += "masterwork longbow <br />";
+							} else if (75<roll && roll<81) {
+								itemList += "masterwork composite longbow <br />";
+							} else if (80<roll && roll<86) {
+								itemList += "masterwork composite longbow (+1 STR) <br />";
+							} else if (85<roll && roll<91) {
+								itemList += "masterwork composite longbow (+2 STR) <br />";
+							} else if (90<roll && roll<96) {
+								itemList += "masterwork composite longbow (+3 STR) <br />";
+							} else {
+								itemList += "masterwork composite longbow (+4 STR) <br />";
+							}
+						}
+						
+					} else {
+						
+						roll = D100(1);
+						if (roll<4) {
+							itemList += "backpack <br />";
+						} else if (3<roll && roll<7) {
+							itemList += "crowbar <br />";
+						} else if (6<roll && roll<12) {
+							itemList += "bullsey lantern <br />";
+						} else if (11<roll && roll<17) {
+							itemList += "simple lock <br />";
+						} else if (16<roll && roll<22) {
+							itemList += "average lock <br />";
+						} else if (21<roll && roll<29) {
+							itemList += "good lock <br />";
+						} else if (28<roll && roll<36) {
+							itemList += "superior lock <br />";
+						} else if (35<roll && roll<41) {
+							itemList += "masterwork manacles <br />";
+						} else if (40<roll && roll<44) {
+							itemList += "small steel mirror <br />";
+						} else if (43<roll && roll<47) {
+							itemList += "silk rope (50ft) <br />";
+						} else if (46<roll && roll<54) {
+							itemList += "spyglass <br />";
+						} else if (53<roll && roll<59) {
+							itemList += "masterwork artisan's tools <br />";
+						} else if (58<roll && roll<64) {
+							itemList += "climber's kit <br />";
+						} else if (63<roll && roll<69) {
+							itemList += "disguise kit <br />";
+						} else if (38<roll && roll<74) {
+							itemList += "healer's kit <br />";
+						} else if (73<roll && roll<78) {
+							itemList += "silver holy symbol <br />";
+						} else if (77<roll && roll<82) {
+							itemList += "hourglass <br />";
+						} else if (81<roll && roll<89) {
+							itemList += "magnifying glass <br />";
+						} else if (88<roll && roll<96) {
+							itemList += "masterwork instrument <br />";
+						} else {
+							itemList += "masterwork thieve's tools <br />";
+						}
+					}
+					
+					number--;
+					
+				}//end while
+				
+				document.getElementById("output4").innerHTML = itemList;
+				
+			//minor
+			} else if (type==1) {
+				
+				while (number!=0) {
+					
+					roll = D100(1);
+					//armor & shields
+					if (roll<5) {
+					
+					//weapons
+					} else if (4<roll && roll<10) {
+					
+					//potions
+					} else if (9<roll && roll<45) {
+					
+					//rings
+					} else if (44<roll && roll<47) {
+					
+					//scrolls
+					} else if (46<roll && roll<82) {
+					
+					//wands
+					} else if (81<roll && roll<92) {
+					
+					//wondrous items
+					} else {
+						var minorWondrous =	["Quaal's anchor feather token","universal solvent","elixir of love","unguent of timelessness",
+											"Quaal's feather fan token","dust of tracelessness","elixir of hiding","elixir of swimming",
+											"elixir of vision","silversheen","Quaal's feather bird token","Quaal's feather tree token",
+											"Quaal's feather swan boat token","elixir of truth","Quaal's feather whip token","dust of dryness",
+											"gray bag of tricks","hand of the mage","bracers of armor +1","cloak of resistance +1",
+											"lvl 1 pearl of power","phylactery of faithfulness","salve of slipperiness","elixir of fire breath",
+											"pipes of the sewers","dust of illusion","goggles of minute seeing","brooch of shielding",
+											"type 1 necklace of fireballs","dust of appearance","hat of disguise","pipes of sounding",
+											"quiver of Ehlonna","amulet of natural armor +1","Heward's handy haversack","horn of fog",
+											"elemental gem","robe of bones","sovereign glue","type 1 bag of holding","boots of Elvenkind",
+											"candle of truth","cloak of Elvenkind","eyes of the egle","golembane scarab",
+											"type 2 necklace of fireballs","stone of alarm","rust bag of tricks","bead of force","chime of pening",
+											"horshoes of speed","rope of climbine","dust of disappearance","lens of detection","druid's vestment",
+											"silver raven figurine of wondrous power","amulet of health +2","bracers of armor +2",
+											"cloak of charisma +2","cloak of resistance +2","gauntlets of ogre power","gloves of arrow snaring",
+											"gloves of dexterity +2","headband of intellect +2","clear spindle Ioun stone","Keoghtom's ointment",
+											"Nolzur's marvelous pigments","2nd level pearl of power","periapt of wisdome +2","stone salve",
+											"type 3 necklace of fireballs","circlet of persuasion","slippers of spider climbing","incense of meditation"
+											,"type 2 bag of holding","lesser bracers of archery","dusty rose prism Ioun stone",
+											"helm of comprehend languages and read magic","vest of escape","eversmoking bottle",
+											"murlynd's spoon","type 4 necklace of fireballs","boots of striding and springing","wind fan",
+											"amulet of mighty fists +1","horshoes of a zephyr","pipes of haunting","type 5 necklace of fireballs",
+											"gloves of swimming and climbing","tan bag of tricks","minor circlet of blasting",
+											"horn of goodness/evil","robe of useful items","folding boat","cloak of the manta ray",
+											"bottle of air","type 3 bag of holding","periapt of health"];
+						
+						itemList += minorWondrous[D100(1)-1] + " <br />";
+					}
+
+					number--;
+				
+				}//end while
+
+				document.getElementById("output4").innerHTML = itemList;
+				
+			//medium
+			} else if (type==2) {
+				
+				while (number!=0) {
+					
+					roll = D100(1);
+					//armor & shields
+					if (roll<11) {
+					
+					//weapons
+					} else if (10<roll && roll<21) {
+					
+					//potions
+					} else if (20<roll && roll<31) {
+					
+					//rings
+					} else if (30<roll && roll<41) {
+					
+					//rods
+					} else if (40<roll && roll<51) {
+					
+					//scrolls
+					} else if (50<roll && roll<66) {
+					
+					//staves
+					} else if (65<roll && roll<69) {
+					
+					//wands
+					} else if (68<roll && roll<84) {
+					
+					//wondrous items
+					} else {
+						var mediumWondrous =["boots of levitation","harp of charming","amulet of natural armor +2","flesh golem manual",
+											"hand of glory","deep red sphere Ioun stone","incandescent blue sphere Ioun stone",
+											"pale blue rhomboid Ioun stone","pink and green sphere Ioun stone","pink rhomboid Ioun stone",
+											"scarlet and blue sphere Ioun stone","deck of illusions","type 5 necklace of fireballs",
+											"candle of invocation","bracers of armor +3","cloak of resistance +3","decanter of endless water",
+											"necklace of adaptation","3rd level pearl of power","talisman of the sphere",
+											"serpentine owl figurine of wondrous power","type 7 necklace of fireballs","lesser strand of prayer beads",
+											"type 4 bag of holding","bronze griffon figurine of wondrous power","ebony fly figurine of wondrous power",
+											"gloves of storing","dark blue rhomboid Ioun stone","courser stone horse","cape of the mountebank",
+											"phylactery of undead turning","gauntlet of rust","boots of speed","goggles of night","clay golem manual",
+											"medallion of thoughts","pipes of pain","Boccob's blessed book","monk's belt","gem of brightness",
+											"lyre of building","cloack of arachnida","destrier stone horse","beld of Dwarvenkind",
+											"periapt of wound closure","horn of the tritons","pearl of the sirines",
+											"onyx dog figurine of wondrous power","amulet of healther +4","belt of giant strength +4","winged boots",
+											"bracers of armor +4","cloack of charisma +4","cloak of resistance +4","gloves of dexterity +4",
+											"headband of intellect +4","4th level pearl of power","periapt of wisdom +4","scabbard of keen edges",
+											"golden lion figurine of wondrous power","chime of interruption"," broom of lying",
+											"marble elephant figurine of wondrous power","amulet of natural armor +3","iridescent spindle Ioun stone",
+											"bracelet of friends","5x5ft carpet of flying","horn of blasting","pale lavender ellipsoid Ioun stone",
+											"pearly white spindle Ioun stone","portable hole","stone of good luck(luckstone)",
+											"ivory goat figurine of wondrous power","rope of entanglement","stone golem manual","mask of the skull",
+											"mattock of the titans","major circlet of blasting","amulet of mighty fists +2",
+											"minor cloak of displacement","helm of underwater action","greater bracers of archery",
+											"bracers of armor +5","cloak of resistance +5","eyes of doom","5th level pearl of power",
+											"maul of the titans","strand of prayer beads","cloak of the bat","iron bands of Bilarro",
+											"cube of frost resistance","helm of telepathy","periapt of proof against poison",
+											"robe of scintillating colors","manual of bodily health +1","manual of gainful exercise +1",
+											"manual of quickness in action +1","tome of clear thoughts +1","tome of leadership and influence +1",
+											"tome of understanding +1"];
+						
+						itemList += mediumWondrous[D100(1)-1] + " <br />";
+					
+					}
+					
+					number--;
+				
+				}//end while
+
+				document.getElementById("output4").innerHTML = itemList;
+				
+		
+			//major
+			} else {
+				
+				while (number!=0) {
+				
+					roll = D100(1);
+					//armos & shields
+					if (roll<11) {
+					
+					//weapons
+					} else if (10<roll && roll<21) {
+					
+					//potions
+					} else if (20<roll && roll<26) {
+					
+					//rings
+					} else if (25<roll && roll<36) {
+					
+					//rods
+					} else if (35<roll && roll<46) {
+					
+					//scrolls
+					} else if (45<roll && roll<56) {
+					
+					//staves
+					} else if (55<roll && roll<76) {
+					
+					//wands
+					} else if (75<roll && roll<81) {
+					
+					//wondrous items
+					} else {
+						var majorWondrous =	["dimensional shackles","obsidian steed figurine of wondrous power","drums of panic",
+											"orange Ioun stone","pale green prism","lantern of revealing","robe of blending",
+											"amulet of natural armor +4","amulet of proof against detection and location",
+											"5x10ft carpet of flying","iron golem manual","amulet of health +6",
+											"belt of giant strength +6","bracers of armor","cloak of charisma +6",
+											"gloves of dexterity +6","headband of intellect +6","vibrant purple prism Ioun stone",
+											"6th level pearl of power","periapt of wisdom +6","scarab of protection",
+											"lavender and green ellipsoid Ioun stone","ring gates","crystal ball",
+											"greater stone golem manual","orb of storms","boots of teleportation",
+											"bracers of armor +7","7th level pearl of power","amulet of natural armor +6",
+											"major cloak of displacement","crystal ball (w/ see invisibility)","horn of Valhalla",
+											"cyrstal ball (w/ detect thoughts)","6x9ft carpet of flying",
+											"amulet of mighty fists +3","wings of flying","cloak of etherealness",
+											"Daem's instant fortress","manual of bodily healther +2",
+											"manual of gainful exercise +2","manual of quickness in action +2",
+											"tome of clear thoughts +2","tome of leadership and influence +2",
+											"tome of understanding +2","eyes of charming","robe of stars",
+											"10x10ft carpet of flying","darkskull","cube of force","bracers of armor +8",
+											"8th level pearl of power","crystal ball (w/ telepathy)","greater horn of blasting",
+											"two-spell pearl of power","helm of teleportation","gem of seeing",
+											"robe of the archmagi","mantle of faith","crystal ball (w/ true seeing)",
+											"9th level pearl of power","well of many worlds","manual of bodily health +3",
+											"manual of gainful exercise +3","manual of quickness in action +3",
+											"tome of clear thoughts +3","tome of understanding +3",
+											"tome of leadership and influence +3","apparatus of Kwalish","mantle of spell restance",
+											"mirror of opposition","greater strand of prayer beads","amulet of mighty fists +4",
+											"eyes of petrification","bowl of commanding water elementals",
+											"brazier of commanding fire elementals","censer of controlling air elementals",
+											"stone of controlling earth elementals","manual of bodily healther +4",
+											"manual of gainful exercise +4","manual of quickness in action +4",
+											"tome of clear thoughts +4","tome of leadership and influence +4",
+											"tome of understanding +4","amulet of the planes","robe of eyes","helm of brilliance",
+											"manual of bodily health +5","manual of gainful exercise +5",
+											"manual of quickness in action +5","tome of clear thoughts +5",
+											"tome of leadership and influence +5","tome of understanding +5","efreeti bottle",
+											"amulet of mighty fists +5","chaos diamond","cubic gate","iron flask",
+											"mirror of mental prowess","mirror of life trapping"];
+						
+						itemList += majorWondrous[D100(1)-1] + " <br />";
+					
+					}
+
+					number--;
+				
+				}//end while
+
+				document.getElementById("output4").innerHTML = itemList;
+				
+		
+			}
+		
+		}//end Item
+		
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////// MAIN FUNCTION MAIN FUNCTION MAIN FUNCTION MAIN FUNCTION MAIN FUNCTION MAIN FUNCTION ///////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		//function attached to button
+		function go () {
+			var lvl = document.getElementById('level').value;
+			var cr = document.getElementById('CR').value;
+			var ovrLvl = false;
+			var cdif;
+			var xp;
+			var roll;
+			/*constants for equations*/
+			var EvC = 300;
+			var OvOdC = 200;
+			var UnOdC = 450;
+			
+			document.getElementById("output1").hidden = false;
+			document.getElementById("output2").hidden = false;
+			document.getElementById("output3").hidden = false;
+			document.getElementById("output4").hidden = false;
+			
+			/*lvls 1-4 don't follow later patterns, corrections done here*/
+			/*quietly change levels < 3 to 3*/
+			if (lvl < 3) {
+				lvl = 3;
+			
+			/*lvl 4 requires adjustments of constants and special case*/
+			} else if (lvl == 4) {
+				UnOdC = 400;
+			} else { /*nothing*/ }
+			
+			/*calc cdif*/
+			cdif = cr - lvl;
+			
+			/*determine over/underlvl*/
+			if (cdif < 0) {
+				ovrLvl = true;
+			} else { /* nothing */ }
+			
+			/*nested if statements! everyone's favorite!*/
+			/*challenge rating too high/low*/
+			if (-7 > cdif || cdif > 7) {
+				xp = "Imbalanced challenge; Award no XP.\n";
+				document.getElementById("output1").innerHTML = xp;
+				
+			} else {
+			
+				/*cdif even? lvl*2^(cdif/2)*300*/
+				if (cdif % 2 == 0) {
+					xp = Math.round(lvl*Math.pow(2,(cdif/2))*EvC);
+					document.getElementById("output1").innerHTML = "Award: " + xp + "xp\n";
+					
+				/*cdif odd?*/
+				} else {
+				
+					/*overleveled party*/
+					if (ovrLvl == true) {
+						xp = lvl*Math.pow(2,((cdif+1)/2))*OvOdC;
+						document.getElementById("output1").innerHTML = "Award: " + xp + "xp\n";
+						
+					/*underleveled party*/
+					} else {
+						xp = lvl*Math.pow(2,((cdif-1)/2))*UnOdC;
+						document.getElementById("output1").innerHTML = "Award: " + xp + "xp\n";
+						
+					}/*end final case else*/
+					
+				}/*end even/odd else*/
+				
+			}/*end abs value else*/
+			
+			/*treasure...here we go.  There is no pattern to it according to the rules.  It simply*
+			  must be coded 1for1.  So many ifs...so many...  Tried to use a switch function but I banged*
+			  my head against for a day before just deciding to go with the devil I knew.*/
+			  
+			if (cr==1) {
+				
+				//coins
+				roll = D100(1);
+				if (roll<15) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (14<roll && roll<30) {
+					document.getElementById("output2").innerHTML = D6(1)*1000 + " copper.";
+				} else if (29<roll && roll<53) {
+					document.getElementById("output2").innerHTML = D8(1)*100 + " silver.";
+				} else if (52<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D8(2)*10 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(1)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<91) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (90<roll && roll<96) {
+					Gem(1);
+				} else {
+					Art(1);
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<72) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (71<roll && roll<96) {
+					Item(0,1);
+				} else {
+					Item(1,1);
+				}//end items
+
+			}//end lvl 1
+			
+			else if (cr==2) {
+
+				roll = D100(1);
+				if (roll<14) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (13<roll && roll<24) {
+					document.getElementById("output2").innerHTML = D10(1)*1000 + " copper.";
+				} else if (23<roll && roll<44) {
+					document.getElementById("output2").innerHTML = D10(2)*100 + " silver.";
+				} else if (43<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D10(4)*10 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D8(2)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<82) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (81<roll && roll<96) {
+					Gem(Math.ceil(D6(1)/2));
+				} else {
+					Art(Math.ceil(D6(1)/2));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<50) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (49<roll && roll<86) {
+					Item(0,1);
+				} else {
+					Item(1,1);
+				}//end items
+			
+			}//end lvl 2
+			
+			else if (cr==3) {
+				
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (11<roll && roll<22) {
+					document.getElementById("output2").innerHTML = D10(2)*1000 + " copper.";
+				} else if (21<roll && roll<42) {
+					document.getElementById("output2").innerHTML = D8(4)*100 + " silver.";
+				} else if (41<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D10(4)*10 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(1)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<78) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (77<roll && roll<96) {
+					Gem(Math.ceil(D6(1)/2));
+				} else {
+					Art(Math.ceil(D6(1)/2));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<50) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (49<roll && roll<80) {
+					Item(0,Math.ceil(D6(1)/2));
+				} else {
+					Item(1,1);
+				}//end items
+				
+			}//end lvl 3
+			
+			else if (cr==4) {
+
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (11<roll && roll<22) {
+					document.getElementById("output2").innerHTML = D10(3)*1000 + " copper.";
+				} else if (21<roll && roll<42) {
+					document.getElementById("output2").innerHTML = D12(4)*1000 + " silver.";
+				} else if (41<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D6(1)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D8(1)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<71) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (70<roll && roll<96) {
+					Gem(D4(1));
+				} else {
+					Art(Math.ceil(D6(1)/2));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<43) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (42<roll && roll<63) {
+					Item(0,D4(1));
+				} else {
+					Item(1,1);
+				}//end items
+				
+			}//end lvl 4
+			
+			else if (cr==5) {
+
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<20) {
+					document.getElementById("output2").innerHTML = D4(1)*10000 + " copper.";
+				} else if (19<roll && roll<39) {
+					document.getElementById("output2").innerHTML = D6(1)*1000 + " silver.";
+				} else if (38<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D8(1)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(1)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<61) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (60<roll && roll<96) {
+					Gem(D4(1));
+				} else {
+					Art(D4(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<58) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (57<roll && roll<68) {
+					Item(0,D4(1));
+				} else {
+					Item(1,Math.ceil(D6(2)/2));
+				}//end items
+				
+			}//end lvl 5
+			
+			else if (cr==6) {
+
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<19) {
+					document.getElementById("output2").innerHTML = D6(1)*10000 + " copper.";
+				} else if (18<roll && roll<38) {
+					document.getElementById("output2").innerHTML = D8(1)*1000 + " silver.";
+				} else if (37<roll && roll<96) {
+					document.getElementById("output2").innerHTML = D10(1)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D12(1)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<57) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (56<roll && roll<93) {
+					Gem(D4(1));
+				} else {
+					Art(D4(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<55) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (54<roll && roll<60) {
+					Item(0,D4(1));
+				} else if (59<roll && roll<100) {
+					Item(1,Math.ceil(D6(2)/2));
+				} else {
+					Item(2,1);
+				}//end items
+			
+			}//end lvl 6
+			
+			else if (cr==7) {
+			
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (11<roll && roll<19) {
+					document.getElementById("output2").innerHTML = D10(1)*10000 + " copper.";
+				} else if (18<roll && roll<36) {
+					document.getElementById("output2").innerHTML = D12(1)*1000 + " silver.";
+				} else if (35<roll && roll<94) {
+					document.getElementById("output2").innerHTML = D6(2)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(3)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<49) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (48<roll && roll<89) {
+					Gem(D4(1));
+				} else {
+					Art(D4(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<52) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (51<roll && roll<98) {
+					Item(1,Math.ceil(D6(2)/2));
+				} else {
+					Item(2,1);
+				}//end items
+
+			}//end lvl 7
+			
+			else if (cr==8) {
+
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<16) {
+					document.getElementById("output2").innerHTML = D12(1)*10000 + " copper.";
+				} else if (15<roll && roll<30) {
+					document.getElementById("output2").innerHTML = D6(2)*1000 + " silver.";
+				} else if (29<roll && roll<88) {
+					document.getElementById("output2").innerHTML = D8(2)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D6(3)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<46) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (45<roll && roll<86) {
+					Gem(D6(1));
+				} else {
+					Art(D4(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<52) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (51<roll && roll<98) {
+					Item(1,D4(1));
+				} else {
+					Item(2,1);
+				}//end items
+			
+			}//end lvl 8
+			
+			else if (cr==9) {
+
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<16) {
+					document.getElementById("output2").innerHTML = D6(2)*10000 + " copper.";
+				} else if (15<roll && roll<30) {
+					document.getElementById("output2").innerHTML = D8(2)*1000 + " silver.";
+				} else if (29<roll && roll<86) {
+					document.getElementById("output2").innerHTML = D4(5)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D12(2)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<41) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (40<roll && roll<81) {
+					Gem(D8(1));
+				} else {
+					Art(D4(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<44) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (43<roll && roll<92) {
+					Item(1,D4(1));
+				} else {
+					Item(2,1);
+				}//end items
+			
+			}//end lvl 9
+			
+			else if (cr==10) {
+			
+				roll = D100(1);
+				if (roll<11) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (10<roll && roll<25) {
+					document.getElementById("output2").innerHTML = D10(2)*1000 + " silver.";
+				} else if (24<roll && roll<80) {
+					document.getElementById("output2").innerHTML = D4(6)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D6(5)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<36) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (35<roll && roll<80) {
+					Gem(D8(1));
+				} else {
+					Art(D6(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<41) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (40<roll && roll<89) {
+					Item(1,D4(1));
+				} else if (88<roll && roll<100) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
+				
+			}//end lvl 10
+			
+			else if (cr==11) {
+			
+				roll = D100(1);
+				if (roll<9) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (8<roll && roll<15) {
+					document.getElementById("output2").innerHTML = D10(3)*1000 + " silver.";
+				} else if (14<roll && roll<76) {
+					document.getElementById("output2").innerHTML = D8(4)*100 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(4)*10 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<25) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (24<roll && roll<75) {
+					Gem(D10(1));
+				} else {
+					Art(D6(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<32) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (31<roll && roll<85) {
+					Item(1,D4(1));
+				} else if (84<roll && roll<99) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
+
+			}//end lvl 11
+			
+			else if (cr==12) {
+			
+				roll = D100(1);
+				if (roll<9) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (8<roll && roll<15) {
+					document.getElementById("output2").innerHTML = D12(3)*1000 + " silver.";
+				} else if (14<roll && roll<76) {
+					document.getElementById("output2").innerHTML = D4(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(1)*100 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<18) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (17<roll && roll<71) {
+					Gem(D10(1));
+				} else {
+					Art(D8(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<28) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (27<roll && roll<83) {
+					Item(1,D6(1));
+				} else if (82<roll && roll<98) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
+			
+			}//end lvl 12
+			
+			else if (cr==13) {
+			
+				roll = D100(1);
+				if (roll<9) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (8<roll && roll<76) {
+					document.getElementById("output2").innerHTML = D4(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(1)*100 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (11<roll && roll<67) {
+					Gem(D12(1));
+				} else {
+					Art(D10(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<20) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (19<roll && roll<74) {
+					Item(1,D6(1));
+				} else if (73<roll && roll<96) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
+
+			}//end lvl 13
+			
+			else if (cr==14) {
+			
+				roll = D100(1);
+				if (roll<9) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (8<roll && roll<76) {
+					document.getElementById("output2").innerHTML = D6(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D12(1)*100 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (11<roll && roll<67) {
+					Gem(D12(1));
+				} else {
+					Art(D10(1));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<20) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (19<roll && roll<59) {
+					Item(1,D6(1));
+				} else if (58<roll && roll<93) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
+
+			}//end lvl 14
+			
+			else if (cr==15) {
+			
+				roll = D100(1);
+				if (roll<4) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (3<roll && roll<75) {
+					document.getElementById("output2").innerHTML = D8(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(3)*100 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<10) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (9<roll && roll<66) {
+					Gem(D10(2));
+				} else {
+					Art(D8(2));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<12) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (11<roll && roll<47) {
+					Item(1,D10(1));
+				} else if (46<roll && roll<91) {
+					Item(2,1);
+				} else {
+					Item(3,1);
+				}//end items
+
+			}//end lvl 15
+			
+			else if (cr==16) {
+			
+				roll = D100(1);
+				if (roll<4) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (3<roll && roll<75) {
+					document.getElementById("output2").innerHTML = D12(1)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(3)*100 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<8) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (7<roll && roll<65) {
+					Gem(D6(4));
+				} else {
+					Art(D10(2));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<41) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (40<roll && roll<47) {
+					Item(1,D10(1));
+				} else if (46<roll && roll<91) {
+					Item(2,Math.ceil(D6(1)/2));
+				} else {
+					Item(3,1);
+				}//end items
+
+			}//end lvl 16
+			
+			else if (cr==17) {
+			
+				roll = D100(1);
+				if (roll<4) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (3<roll && roll<69) {
+					document.getElementById("output2").innerHTML = D4(3)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(2)*100 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<5) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (4<roll && roll<64) {
+					Gem(D8(4));
+				} else {
+					Art(D8(3));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<34) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (33<roll && roll<84) {
+					Item(2,Math.ceil(D6(1)/2));
+				} else {
+					Item(3,1);
+				}//end items
+
+			}//end lvl 17
+			
+			else if (cr==18) {
+			
+				roll = D100(1);
+				if (roll<3) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (2<roll && roll<66) {
+					document.getElementById("output2").innerHTML = D6(3)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D4(5)*100 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<5) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (4<roll && roll<55) {
+					Gem(D12(3));
+				} else {
+					Art(D10(3));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<25) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (24<roll && roll<81) {
+					Item(2,D4(1));
+				} else {
+					Item(3,1);
+				}//end items
+
+			}//end lvl 18
+			
+			else if (cr==19) {
+			
+				roll = D100(1);
+				if (roll<3) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (2<roll && roll<66) {
+					document.getElementById("output2").innerHTML = D8(3)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(3)*100 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<4) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (3<roll && roll<51) {
+					Gem(D6(6));
+				} else {
+					Art(D6(6));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<5) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (4<roll && roll<71) {
+					Item(2,D4(1));
+				} else {
+					Item(3,1);
+				}//end items
+
+			}//end lvl 19
+			
+			else {
+			
+				roll = D100(1);
+				if (roll<3) {
+					document.getElementById("output2").innerHTML = "No coins.";
+				} else if (2<roll && roll<66) {
+					document.getElementById("output2").innerHTML = D8(4)*1000 + " gold.";
+				} else {
+					document.getElementById("output2").innerHTML = D10(4)*100 + " platinum.";
+				}//end coins
+				
+				//art
+				roll = D100(1);
+				if (roll<3) {
+					document.getElementById("output3").innerHTML = "No goods.";
+				} else if (2<roll && roll<39) {
+					Gem(D10(4));
+				} else {
+					Art(D6(7));
+				}//end art
+				
+				//items
+				roll = D100(1);
+				if (roll<26) {
+					document.getElementById("output4").innerHTML = "No items.";
+				} else if (25<roll && roll<66) {
+					Item(2,D4(1));
+				} else {
+					Item(3,Math.ceil(D6(1)/2));
+				}//end items
+				
+			}//end lvl 20
+
+		}/*end go*/
+		</script>
+	</head>
+	
+	<body>
+		
+		<p><h1>Enter your party's average level<br>
+		and the encounter's challenge rating.<br>
+		When you are finished, hit the GO! button.</p>
+		
+		<form id="in">
+			Party Level: <input type="number" id="level" min="1" max="20" value="1"><br>
+			Challenge Rating: <input type="number" id="CR" min="1" max="20" value="1"><br>
+			<button onClick="go(); return false;">GO!</button>
+		</form></h1>
+		
+		<p id="output1" hidden></p>
+		<p id="output2" hidden></p>
+		<p id="output3" hidden></p>
+		<p id="output4" hidden></p>
+		
+		
+		
+	</body>
+</html>
