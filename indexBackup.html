@@ -115,7 +115,7 @@
 			
 			document.getElementById("output3").innerHTML = gemList;
 			
-		}//end GemArt
+		}//end Gem
 		
 		//generates art objects the same as Gem()
 		function Art(x) {
@@ -195,6 +195,84 @@
 			document.getElementById("output3").innerHTML = artList;
 		
 		}//end Art
+		
+		//staff takes a med/major parameter and returns a string to be appended to itemList
+		//INTENDED TO ONLY BE CALLED WITHIN ITEM() FUNCTION
+		function Staff(x) {
+
+			var roll;
+		
+			if (x==0) {
+			
+				roll = D100(1);
+				if (roll<16) {
+					return "staff of charming";
+				}  else if (15<roll && roll<31) {
+					return "staff of fire";
+				}  else if (30<roll && roll<41) {
+					return "staff of swarming insects";
+				}  else if (40<roll && roll<61) {
+					return "staff of healing";
+				}  else if (60<roll && roll<76) {
+					return "staff of size alteration";
+				}  else if (75<roll && roll<91) {
+					return "staff of illumination";
+				}  else if (90<roll && roll<96) {
+					return "staff of frost";
+				} else {
+					return "staff of defense";
+				}
+				
+			} else {
+			
+				roll = D100(1);
+				if (roll<4) {
+					return "staff of charming";
+				}  else if (3<roll && roll<10) {
+					return "staff of fire";
+				}  else if (9<roll && roll<12) {
+					return "staff of swarming insects";
+				}  else if (11<roll && roll<18) {
+					return "staff of healing";
+				}  else if (17<roll && roll<20) {
+					return "staff of size alteration";
+				}  else if (19<roll && roll<25) {
+					return "staff of illumination";
+				}  else if (24<roll && roll<32) {
+					return "staff of frost";
+				}  else if (31<roll && roll<39) {
+					return "staff of defense";
+				}  else if (38<roll && roll<44) {
+					return "staff of abjuration";
+				}  else if (43<roll && roll<49) {
+					return "staff of conjuration";
+				}  else if (48<roll && roll<54) {
+					return "staff of enchantment";
+				}  else if (53<roll && roll<59) {
+					return "staff of evocation";
+				}  else if (58<roll && roll<64) {
+					return "staff of illusion";
+				}  else if (63<roll && roll<69) {
+					return "staff of necromancy";
+				}  else if (68<roll && roll<74) {
+					return "staff of transmutation";
+				}  else if (73<roll && roll<78) {
+					return "staff of divination";
+				}  else if (77<roll && roll<83) {
+					return "staff of earth and stone";
+				}  else if (82<roll && roll<88) {
+					return "staff of woodlands";
+				}  else if (87<roll && roll<93) {
+					return "staff of life";
+				}  else if (92<roll && roll<98) {
+					return "staff of passage";
+				} else {
+					return "staff of power";
+				}
+			
+			}
+		
+		}//end staff()
 		
 		//items generator takes two parameters one for the number of items and the second as a code to link to 
 		//mundane, minor, medium or major; output is printed to output4
@@ -497,22 +575,22 @@
 					roll = D100(1);
 					//armor & shields
 					if (roll<5) {
-					
+						itemList += "enchanted armor <br />";
 					//weapons
 					} else if (4<roll && roll<10) {
-					
+						itemList += "enchanted weapon <br />";
 					//potions
 					} else if (9<roll && roll<45) {
-					
+						itemList += "potion <br />";
 					//rings
 					} else if (44<roll && roll<47) {
-					
+						itemList += "ring <br />";
 					//scrolls
 					} else if (46<roll && roll<82) {
-					
+						itemList += "scroll <br />";
 					//wands
 					} else if (81<roll && roll<92) {
-					
+						itemList += "wand <br />";
 					//wondrous items
 					} else {
 						var minorWondrous =	["Quaal's anchor feather token","universal solvent","elixir of love","unguent of timelessness",
@@ -558,28 +636,28 @@
 					roll = D100(1);
 					//armor & shields
 					if (roll<11) {
-					
+						itemList += "enchanted armor <br />";
 					//weapons
 					} else if (10<roll && roll<21) {
-					
+						itemList += "enchanted weapon <br />";
 					//potions
 					} else if (20<roll && roll<31) {
-					
+						itemList += "potion <br />";
 					//rings
 					} else if (30<roll && roll<41) {
-					
+						itemList += "ring <br />";
 					//rods
 					} else if (40<roll && roll<51) {
-					
+						itemList += "rod <br />";
 					//scrolls
 					} else if (50<roll && roll<66) {
-					
+						itemList += "scroll <br />";
 					//staves
 					} else if (65<roll && roll<69) {
-					
+						itemList += Staff(0) + " <br />";
 					//wands
 					} else if (68<roll && roll<84) {
-					
+						itemList += "wand <br />";
 					//wondrous items
 					} else {
 						var mediumWondrous =["boots of levitation","harp of charming","amulet of natural armor +2","flesh golem manual",
@@ -631,28 +709,28 @@
 					roll = D100(1);
 					//armos & shields
 					if (roll<11) {
-					
+						itemList += "enchanted armor <br />";
 					//weapons
 					} else if (10<roll && roll<21) {
-					
+						itemList += "enchanted weapon <br />";
 					//potions
 					} else if (20<roll && roll<26) {
-					
+						itemList += "potion <br />";
 					//rings
 					} else if (25<roll && roll<36) {
-					
+						itemList += "ring <br />";
 					//rods
 					} else if (35<roll && roll<46) {
-					
+						itemList += "rod <br />";
 					//scrolls
 					} else if (45<roll && roll<56) {
-					
+						itemList += "scroll <br />";
 					//staves
 					} else if (55<roll && roll<76) {
-					
+						itemList += Staff(1) + " <br />";
 					//wands
 					} else if (75<roll && roll<81) {
-					
+						itemList += "wand <br />";
 					//wondrous items
 					} else {
 						var majorWondrous =	["dimensional shackles","obsidian steed figurine of wondrous power","drums of panic",
@@ -1528,3 +1606,11 @@
 		
 	</body>
 </html>
+
+<!--FINAL WORD: This project became quite the rabbit hole.  The more I got into the the more I realized I had yet to complete.
+The logic behind it is simple enough and I tried to keep it as clean as possible with function calls.  It really just boiled
+down to a million (that MIGHT be the actual number...) if statements and reference arrays.  I'm happy to say it is 100%
+functional after many hours of work.  You'll notice the evolution of my organizational pattern as I started putting what I 
+could in arrays instead of individual if statement wherever possible.  So much I plan to improve upon.  If you're a gamer
+yourself feel free to use this, though it's pretty specific to D&D.  Have a great winter break!
+-->

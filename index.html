@@ -109,13 +109,13 @@
 					cost = D4(4) + " gp";
 				}
 				
-				gemList += gems[Math.floor(Math.ceil(Math.random()*100)/2)] + " (" + cost + ") <br />";
+				gemList += gems[Math.floor(Math.random()*50)] + " (" + cost + ") <br />";
 				x--;
 			}//end while
 			
 			document.getElementById("output3").innerHTML = gemList;
 			
-		}//end GemArt
+		}//end Gem
 		
 		//generates art objects the same as Gem()
 		function Art(x) {
@@ -187,7 +187,7 @@
 					cost = D6(2)*1000 + " gp";
 				}
 				
-				artList += art[Math.floor(Math.ceil(Math.random()*100)/2)] + " (" + cost + ") <br />";
+				artList += art[Math.floor(Math.random()*50)] + " (" + cost + ") <br />";
 				x--;
 			
 			}//end while
@@ -196,6 +196,84 @@
 		
 		}//end Art
 		
+		//staff takes a med/major parameter and returns a string to be appended to itemList
+		//INTENDED TO ONLY BE CALLED WITHIN ITEM() FUNCTION
+		function Staff(x) {
+
+			var roll;
+		
+			if (x==0) {
+			
+				roll = D100(1);
+				if (roll<16) {
+					return "staff of charming";
+				}  else if (15<roll && roll<31) {
+					return "staff of fire";
+				}  else if (30<roll && roll<41) {
+					return "staff of swarming insects";
+				}  else if (40<roll && roll<61) {
+					return "staff of healing";
+				}  else if (60<roll && roll<76) {
+					return "staff of size alteration";
+				}  else if (75<roll && roll<91) {
+					return "staff of illumination";
+				}  else if (90<roll && roll<96) {
+					return "staff of frost";
+				} else {
+					return "staff of defense";
+				}
+				
+			} else {
+			
+				roll = D100(1);
+				if (roll<4) {
+					return "staff of charming";
+				}  else if (3<roll && roll<10) {
+					return "staff of fire";
+				}  else if (9<roll && roll<12) {
+					return "staff of swarming insects";
+				}  else if (11<roll && roll<18) {
+					return "staff of healing";
+				}  else if (17<roll && roll<20) {
+					return "staff of size alteration";
+				}  else if (19<roll && roll<25) {
+					return "staff of illumination";
+				}  else if (24<roll && roll<32) {
+					return "staff of frost";
+				}  else if (31<roll && roll<39) {
+					return "staff of defense";
+				}  else if (38<roll && roll<44) {
+					return "staff of abjuration";
+				}  else if (43<roll && roll<49) {
+					return "staff of conjuration";
+				}  else if (48<roll && roll<54) {
+					return "staff of enchantment";
+				}  else if (53<roll && roll<59) {
+					return "staff of evocation";
+				}  else if (58<roll && roll<64) {
+					return "staff of illusion";
+				}  else if (63<roll && roll<69) {
+					return "staff of necromancy";
+				}  else if (68<roll && roll<74) {
+					return "staff of transmutation";
+				}  else if (73<roll && roll<78) {
+					return "staff of divination";
+				}  else if (77<roll && roll<83) {
+					return "staff of earth and stone";
+				}  else if (82<roll && roll<88) {
+					return "staff of woodlands";
+				}  else if (87<roll && roll<93) {
+					return "staff of life";
+				}  else if (92<roll && roll<98) {
+					return "staff of passage";
+				} else {
+					return "staff of power";
+				}
+			
+			}
+		
+		}//end staff()
+		
 		//items generator takes two parameters one for the number of items and the second as a code to link to 
 		//mundane, minor, medium or major; output is printed to output4
 		
@@ -203,6 +281,7 @@
 			
 			var roll;
 			var itemList = "";
+			var sentinel = true;
 			
 			//mundane
 			if (type==0) {
@@ -491,10 +570,58 @@
 			//minor
 			} else if (type==1) {
 				
-				variable = number;
 				while (number!=0) {
-				
-					itemList = variable + " minor item(s)";
+					
+					roll = D100(1);
+					//armor & shields
+					if (roll<5) {
+						itemList += "enchanted armor <br />";
+					//weapons
+					} else if (4<roll && roll<10) {
+						itemList += "enchanted weapon <br />";
+					//potions
+					} else if (9<roll && roll<45) {
+						itemList += "potion <br />";
+					//rings
+					} else if (44<roll && roll<47) {
+						itemList += "ring <br />";
+					//scrolls
+					} else if (46<roll && roll<82) {
+						itemList += "scroll <br />";
+					//wands
+					} else if (81<roll && roll<92) {
+						itemList += "wand <br />";
+					//wondrous items
+					} else {
+						var minorWondrous =	["Quaal's anchor feather token","universal solvent","elixir of love","unguent of timelessness",
+											"Quaal's feather fan token","dust of tracelessness","elixir of hiding","elixir of swimming",
+											"elixir of vision","silversheen","Quaal's feather bird token","Quaal's feather tree token",
+											"Quaal's feather swan boat token","elixir of truth","Quaal's feather whip token","dust of dryness",
+											"gray bag of tricks","hand of the mage","bracers of armor +1","cloak of resistance +1",
+											"lvl 1 pearl of power","phylactery of faithfulness","salve of slipperiness","elixir of fire breath",
+											"pipes of the sewers","dust of illusion","goggles of minute seeing","brooch of shielding",
+											"type 1 necklace of fireballs","dust of appearance","hat of disguise","pipes of sounding",
+											"quiver of Ehlonna","amulet of natural armor +1","Heward's handy haversack","horn of fog",
+											"elemental gem","robe of bones","sovereign glue","type 1 bag of holding","boots of Elvenkind",
+											"candle of truth","cloak of Elvenkind","eyes of the egle","golembane scarab",
+											"type 2 necklace of fireballs","stone of alarm","rust bag of tricks","bead of force","chime of pening",
+											"horshoes of speed","rope of climbine","dust of disappearance","lens of detection","druid's vestment",
+											"silver raven figurine of wondrous power","amulet of health +2","bracers of armor +2",
+											"cloak of charisma +2","cloak of resistance +2","gauntlets of ogre power","gloves of arrow snaring",
+											"gloves of dexterity +2","headband of intellect +2","clear spindle Ioun stone","Keoghtom's ointment",
+											"Nolzur's marvelous pigments","2nd level pearl of power","periapt of wisdome +2","stone salve",
+											"type 3 necklace of fireballs","circlet of persuasion","slippers of spider climbing","incense of meditation"
+											,"type 2 bag of holding","lesser bracers of archery","dusty rose prism Ioun stone",
+											"helm of comprehend languages and read magic","vest of escape","eversmoking bottle",
+											"murlynd's spoon","type 4 necklace of fireballs","boots of striding and springing","wind fan",
+											"amulet of mighty fists +1","horshoes of a zephyr","pipes of haunting","type 5 necklace of fireballs",
+											"gloves of swimming and climbing","tan bag of tricks","minor circlet of blasting",
+											"horn of goodness/evil","robe of useful items","folding boat","cloak of the manta ray",
+											"bottle of air","type 3 bag of holding","periapt of health"];
+						
+						itemList += minorWondrous[D100(1)-1] + " <br />";
+					}
+
 					number--;
 				
 				}//end while
@@ -504,10 +631,69 @@
 			//medium
 			} else if (type==2) {
 				
-				variable = number;
 				while (number!=0) {
-				
-					itemList = variable + " medium items(s)";
+					
+					roll = D100(1);
+					//armor & shields
+					if (roll<11) {
+						itemList += "enchanted armor <br />";
+					//weapons
+					} else if (10<roll && roll<21) {
+						itemList += "enchanted weapon <br />";
+					//potions
+					} else if (20<roll && roll<31) {
+						itemList += "potion <br />";
+					//rings
+					} else if (30<roll && roll<41) {
+						itemList += "ring <br />";
+					//rods
+					} else if (40<roll && roll<51) {
+						itemList += "rod <br />";
+					//scrolls
+					} else if (50<roll && roll<66) {
+						itemList += "scroll <br />";
+					//staves
+					} else if (65<roll && roll<69) {
+						itemList += Staff(0) + " <br />";
+					//wands
+					} else if (68<roll && roll<84) {
+						itemList += "wand <br />";
+					//wondrous items
+					} else {
+						var mediumWondrous =["boots of levitation","harp of charming","amulet of natural armor +2","flesh golem manual",
+											"hand of glory","deep red sphere Ioun stone","incandescent blue sphere Ioun stone",
+											"pale blue rhomboid Ioun stone","pink and green sphere Ioun stone","pink rhomboid Ioun stone",
+											"scarlet and blue sphere Ioun stone","deck of illusions","type 5 necklace of fireballs",
+											"candle of invocation","bracers of armor +3","cloak of resistance +3","decanter of endless water",
+											"necklace of adaptation","3rd level pearl of power","talisman of the sphere",
+											"serpentine owl figurine of wondrous power","type 7 necklace of fireballs","lesser strand of prayer beads",
+											"type 4 bag of holding","bronze griffon figurine of wondrous power","ebony fly figurine of wondrous power",
+											"gloves of storing","dark blue rhomboid Ioun stone","courser stone horse","cape of the mountebank",
+											"phylactery of undead turning","gauntlet of rust","boots of speed","goggles of night","clay golem manual",
+											"medallion of thoughts","pipes of pain","Boccob's blessed book","monk's belt","gem of brightness",
+											"lyre of building","cloack of arachnida","destrier stone horse","beld of Dwarvenkind",
+											"periapt of wound closure","horn of the tritons","pearl of the sirines",
+											"onyx dog figurine of wondrous power","amulet of healther +4","belt of giant strength +4","winged boots",
+											"bracers of armor +4","cloack of charisma +4","cloak of resistance +4","gloves of dexterity +4",
+											"headband of intellect +4","4th level pearl of power","periapt of wisdom +4","scabbard of keen edges",
+											"golden lion figurine of wondrous power","chime of interruption"," broom of lying",
+											"marble elephant figurine of wondrous power","amulet of natural armor +3","iridescent spindle Ioun stone",
+											"bracelet of friends","5x5ft carpet of flying","horn of blasting","pale lavender ellipsoid Ioun stone",
+											"pearly white spindle Ioun stone","portable hole","stone of good luck(luckstone)",
+											"ivory goat figurine of wondrous power","rope of entanglement","stone golem manual","mask of the skull",
+											"mattock of the titans","major circlet of blasting","amulet of mighty fists +2",
+											"minor cloak of displacement","helm of underwater action","greater bracers of archery",
+											"bracers of armor +5","cloak of resistance +5","eyes of doom","5th level pearl of power",
+											"maul of the titans","strand of prayer beads","cloak of the bat","iron bands of Bilarro",
+											"cube of frost resistance","helm of telepathy","periapt of proof against poison",
+											"robe of scintillating colors","manual of bodily health +1","manual of gainful exercise +1",
+											"manual of quickness in action +1","tome of clear thoughts +1","tome of leadership and influence +1",
+											"tome of understanding +1"];
+						
+						itemList += mediumWondrous[D100(1)-1] + " <br />";
+					
+					}
+					
 					number--;
 				
 				}//end while
@@ -518,10 +704,77 @@
 			//major
 			} else {
 				
-				variable = number;
 				while (number!=0) {
 				
-					itemList = variable + " major item(s)";
+					roll = D100(1);
+					//armos & shields
+					if (roll<11) {
+						itemList += "enchanted armor <br />";
+					//weapons
+					} else if (10<roll && roll<21) {
+						itemList += "enchanted weapon <br />";
+					//potions
+					} else if (20<roll && roll<26) {
+						itemList += "potion <br />";
+					//rings
+					} else if (25<roll && roll<36) {
+						itemList += "ring <br />";
+					//rods
+					} else if (35<roll && roll<46) {
+						itemList += "rod <br />";
+					//scrolls
+					} else if (45<roll && roll<56) {
+						itemList += "scroll <br />";
+					//staves
+					} else if (55<roll && roll<76) {
+						itemList += Staff(1) + " <br />";
+					//wands
+					} else if (75<roll && roll<81) {
+						itemList += "wand <br />";
+					//wondrous items
+					} else {
+						var majorWondrous =	["dimensional shackles","obsidian steed figurine of wondrous power","drums of panic",
+											"orange Ioun stone","pale green prism","lantern of revealing","robe of blending",
+											"amulet of natural armor +4","amulet of proof against detection and location",
+											"5x10ft carpet of flying","iron golem manual","amulet of health +6",
+											"belt of giant strength +6","bracers of armor","cloak of charisma +6",
+											"gloves of dexterity +6","headband of intellect +6","vibrant purple prism Ioun stone",
+											"6th level pearl of power","periapt of wisdom +6","scarab of protection",
+											"lavender and green ellipsoid Ioun stone","ring gates","crystal ball",
+											"greater stone golem manual","orb of storms","boots of teleportation",
+											"bracers of armor +7","7th level pearl of power","amulet of natural armor +6",
+											"major cloak of displacement","crystal ball (w/ see invisibility)","horn of Valhalla",
+											"cyrstal ball (w/ detect thoughts)","6x9ft carpet of flying",
+											"amulet of mighty fists +3","wings of flying","cloak of etherealness",
+											"Daem's instant fortress","manual of bodily healther +2",
+											"manual of gainful exercise +2","manual of quickness in action +2",
+											"tome of clear thoughts +2","tome of leadership and influence +2",
+											"tome of understanding +2","eyes of charming","robe of stars",
+											"10x10ft carpet of flying","darkskull","cube of force","bracers of armor +8",
+											"8th level pearl of power","crystal ball (w/ telepathy)","greater horn of blasting",
+											"two-spell pearl of power","helm of teleportation","gem of seeing",
+											"robe of the archmagi","mantle of faith","crystal ball (w/ true seeing)",
+											"9th level pearl of power","well of many worlds","manual of bodily health +3",
+											"manual of gainful exercise +3","manual of quickness in action +3",
+											"tome of clear thoughts +3","tome of understanding +3",
+											"tome of leadership and influence +3","apparatus of Kwalish","mantle of spell restance",
+											"mirror of opposition","greater strand of prayer beads","amulet of mighty fists +4",
+											"eyes of petrification","bowl of commanding water elementals",
+											"brazier of commanding fire elementals","censer of controlling air elementals",
+											"stone of controlling earth elementals","manual of bodily healther +4",
+											"manual of gainful exercise +4","manual of quickness in action +4",
+											"tome of clear thoughts +4","tome of leadership and influence +4",
+											"tome of understanding +4","amulet of the planes","robe of eyes","helm of brilliance",
+											"manual of bodily health +5","manual of gainful exercise +5",
+											"manual of quickness in action +5","tome of clear thoughts +5",
+											"tome of leadership and influence +5","tome of understanding +5","efreeti bottle",
+											"amulet of mighty fists +5","chaos diamond","cubic gate","iron flask",
+											"mirror of mental prowess","mirror of life trapping"];
+						
+						itemList += majorWondrous[D100(1)-1] + " <br />";
+					
+					}
+
 					number--;
 				
 				}//end while
@@ -1353,3 +1606,11 @@
 		
 	</body>
 </html>
+
+<!--FINAL WORD: This project became quite the rabbit hole.  The more I got into the the more I realized I had yet to complete.
+The logic behind it is simple enough and I tried to keep it as clean as possible with function calls.  It really just boiled
+down to a million (that MIGHT be the actual number...) if statements and reference arrays.  I'm happy to say it is 100%
+functional after many hours of work.  You'll notice the evolution of my organizational pattern as I started putting what I 
+could in arrays instead of individual if statement wherever possible.  So much I plan to improve upon.  If you're a gamer
+yourself feel free to use this, though it's pretty specific to D&D.  Have a great winter break!
+-->
